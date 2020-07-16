@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="\1. 源端收集迁移用户JZTA_HIS信息 &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; 1.1 检查用户信息  set lines 222 pag">
+<meta property="og:type" content="article">
+<meta property="og:title" content="骚年-Markdown&#x2F;Oracle&#x2F;迁移相关&#x2F;中亦安图12C迁移-2020年4月9日">
+<meta property="og:url" content="http://yoursite.com/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Oracle/%E8%BF%81%E7%A7%BB%E7%9B%B8%E5%85%B3/%E4%B8%AD%E4%BA%A6%E5%AE%89%E5%9B%BE12C%E8%BF%81%E7%A7%BB-2020%E5%B9%B44%E6%9C%889%E6%97%A5/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="\1. 源端收集迁移用户JZTA_HIS信息 &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; 1.1 检查用户信息  set lines 222 pag">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-16T06:00:59.839Z">
+<meta property="article:modified_time" content="2020-06-03T13:26:58.838Z">
+<meta property="article:author" content="SaoSao Nian">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/07/16/骚年-Markdown/Oracle/迁移相关/中亦安图12C迁移-2020年4月9日/"/>
+
+
+
+
+
+  <title>骚年-Markdown/Oracle/迁移相关/中亦安图12C迁移-2020年4月9日 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Oracle/%E8%BF%81%E7%A7%BB%E7%9B%B8%E5%85%B3/%E4%B8%AD%E4%BA%A6%E5%AE%89%E5%9B%BE12C%E8%BF%81%E7%A7%BB-2020%E5%B9%B44%E6%9C%889%E6%97%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="SaoSao Nian">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">骚年-Markdown/Oracle/迁移相关/中亦安图12C迁移-2020年4月9日</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-16T14:00:59+08:00">
+                2020-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>\1. 源端收集迁移用户JZTA_HIS信息</p>
+<p>===================================================================================================================================================</p>
+<p>1.1 检查用户信息</p>
+<hr>
+<p>set lines 222 pages 222</p>
+<p>col temporary_TABLESPACE for a18</p>
+<p>col DEFAULT_TABLESPACE for a13</p>
+<p>col ACCOUNT_STATUS for a22</p>
+<p>col PASSWORD for a22</p>
+<p>col USERNAME for a23</p>
+<p>col profile for a20</p>
+<p>select USERNAME,ACCOUNT_STATUS,DEFAULT_TABLESPACE,TEMPORARY_TABLESPACE,CREATED,expiry_date,profile from dba_users where USERNAME=’JZTA_HIS’;</p>
+<p>1.2 检查对象信息</p>
+<hr>
+<p>define U=”‘JZTA_HIS’”</p>
+<p>set verify off</p>
+<p>set feedback off</p>
+<p>set lines 222 pages 222</p>
+<p>COLUMN owner      FORMAT a22         HEADING ‘Owner’      ENTMAP off</p>
+<p>COLUMN tablespace_name FORMAT a25         HEADING ‘Tablespace Name’ ENTMAP off</p>
+<p>COLUMN segment_type   FORMAT a25         HEADING ‘Segment Type’   ENTMAP off</p>
+<p>COLUMN seg_count    FORMAT 999,999,999,999   HEADING ‘Segment Count’  ENTMAP off</p>
+<p>col OBJECT_TYPE for a22</p>
+<p>col INDEX_TYPE for a22</p>
+<p>col uniqueness for a15</p>
+<p>col status for a15</p>
+<p>break on report on owner</p>
+<p>set pagesize 10000 lines 222</p>
+<p>select owner,OBJECT_TYPE,status,count(*) from dba_objects where owner IN (&amp;U) and (owner,object_name) not in (select owner,object_name from dba_recyclebin where owner in (&amp;U))</p>
+<p>group by owner,OBJECT_TYPE,status order by owner,OBJECT_TYPE,status;</p>
+<p>col table_name    for a33</p>
+<p>col CONSTRAINT_NAME for a22</p>
+<p>col CONSTRAINT_TYPE for a2</p>
+<p>col INDEX_NAME    for a30</p>
+<p>select owner,CONSTRAINT_TYPE,STATUS,count(*) from dba_constraints where owner IN (&amp;U) and table_name not like ‘BIN$%’ group by owner,CONSTRAINT_TYPE,STATUS order by 1,2,3;</p>
+<p>select index_type,uniqueness,status,count(*) from dba_indexes where owner IN (&amp;U) group by index_type,uniqueness,status order by 1,2,3;</p>
+<p>select owner,table_name,CONSTRAINT_NAME,CONSTRAINT_TYPE,INDEX_NAME from dba_constraints where CONSTRAINT_NAME like ‘SYS_%’ and CONSTRAINT_TYPE=’P’ and table_name not like ‘BIN$%’ AND owner in (&amp;U) ;</p>
+<p>select owner,table_name,CONSTRAINT_NAME,CONSTRAINT_TYPE,INDEX_NAME from dba_constraints where CONSTRAINT_NAME&lt;&gt;INDEX_NAME and CONSTRAINT_TYPE=’P’ and table_name not like ‘BIN$%’ AND owner in (&amp;U) ;</p>
+<p>col m for 999,999,999</p>
+<p>SELECT</p>
+<p>   owner</p>
+<p> ,  tablespace_name</p>
+<p> , segment_type</p>
+<p> ,  round(sum(bytes)/1024/1024) m</p>
+<p> , count(*)  seg_count</p>
+<p>FROM</p>
+<p>  dba_segments where owner IN (&amp;U) and segment_name not like ‘BIN$%’</p>
+<p>GROUP BY</p>
+<p>  owner</p>
+<p> , tablespace_name</p>
+<p> , segment_type</p>
+<p>ORDER BY</p>
+<p>  owner</p>
+<p> , tablespace_name</p>
+<p> , segment_type;</p>
+<p> set verify on</p>
+<p>set feedback on</p>
+<p>select owner,tablespace_name,round(sum(bytes)/1024/1024/1024) G from dba_segments where owner IN (&amp;U) group by owner,tablespace_name order by 1,2,3; </p>
+<p>select ‘grant ‘||privilege||’ on ‘||owner||’.’||table_name||’ to ‘||grantee||’;’ OBJ_priv_DDL from dba_tab_privs where grantee IN (&amp;U) order by grantee;</p>
+<p>1.3 检查回收站</p>
+<hr>
+<p>col owner for a13</p>
+<p>select owner,original_name,OBJECT_NAME,TYPE,SPACE,droptime from dba_recyclebin where owner IN (&amp;U);</p>
+<p>注：如有建议清理</p>
+<p>1.4 检查SQL PROFILE</p>
+<hr>
+<p>select name,category,sql_text,status,FORCE_MATCHING from dba_sql_profiles order by 1;</p>
+<p>1.5 检查字符集</p>
+<hr>
+<p>col PARAMETER for a30</p>
+<p>col VALUE for a30</p>
+<p>select * from v$nls_parameters where parameter like ‘NLS_%CHARACTERSET’;</p>
+<p>1.6 创建directory</p>
+<hr>
+<p>set linesize 400 pagesize 100</p>
+<p>col OWNER for a5  </p>
+<p>col DIRECTORY_NAME for a22</p>
+<p>col DIRECTORY_PATH for a80</p>
+<p>select * from dba_directories;</p>
+<p>!df -h</p>
+<p>!mkdir /home/oracle/pump_dir</p>
+<p>create directory pyas_pump_dir as ‘/home/oracle/pump_dir’;</p>
+<p>pyasec生产库</p>
+<p>SYS  PYAS_PUMP_DIR   /home/oracle/pump_dir  </p>
+<p>his导入库</p>
+<p>SYS  PYAS_HIS_DIR       /home/oracle/his_dir  </p>
+<p>1.7 锁定用户</p>
+<hr>
+<p>alter user JZTA_HIS account lock;</p>
+<p>1.8 清理迁移用户的连接会话</p>
+<hr>
+<p>统计迁移用户的连接信息：</p>
+<p>select inst_id,username,program,status,count(*) from gv$session where username in (‘JZTA_HIS’) group by inst_id,username,program,status order by 1,2,3,4;</p>
+<p>将迁移用户的连接结束：</p>
+<p>select s.username,sid,spid,s.program,s.LAST_CALL_ET s from v$session s,v$process p where p.addr=s.paddr and s.username in (‘JZTA_HIS’);</p>
+<p>select ‘ho kill -9 ‘||spid from v$session s,v$process p where p.addr=s.paddr and s.username in (‘JZTA_HIS’);</p>
+<p>再次统计迁移用户的连接信息，返回空则继续：</p>
+<p>select inst_id,username,program,status,count(*) from gv$session where username in (‘JZTA_HIS’) group by inst_id,username,program,status order by 1,2,3,4;</p>
+<p>注：原库其他用户连接不受影响</p>
+<p>1.9 停止相关定时任务</p>
+<hr>
+<p>查看是否存在再导出时间段内存在任务，包括JOB，SCHEDULE和CRONTAB。</p>
+<p>如果存在提前禁用。</p>
+<p>JOB</p>
+<p>select ‘exec dbms_ijob.broken(‘||job||’,true);’ from dba_jobs where log_user in (‘JZTA_HIS’);</p>
+<p>再次确认</p>
+<p>select job,what,broken from dba_jobs where log_user in (‘JZTA_HIS’);</p>
+<p>1.10 源库导出数据</p>
+<hr>
+<p>nohup expdp “‘/ as sysdba’” directory=PYAS_PUMP_DIR schemas=JZTA_HIS parallel=4 dumpfile=pyas_his_20200318_p4_%U.dmp logfile=expdp_pyas_his_20200318_p4.log cluster=n compression=all exclude=statisitcs &amp;</p>
+<p>tail -f nohup.out</p>
+<p>1.11 源端统计记录行数（可选）</p>
+<hr>
+<p>define U=”‘JZTA_HIS’”</p>
+<p>spool cnt_s.sql</p>
+<p>set echo off   </p>
+<p>set heading off </p>
+<p>set pagesize 0  </p>
+<p>set linesize 200</p>
+<p>set verify off</p>
+<p>set feedback off</p>
+<p>select ‘set echo off   ‘ from dual;</p>
+<p>select ‘set feedback off ‘ from dual;</p>
+<p>select ‘set heading off ‘ from dual;</p>
+<p>select ‘set pagesize 0  ‘ from dual;</p>
+<p>select ‘set linesize 100 ‘ from dual;</p>
+<p>select ‘set verify off  ‘ from dual;</p>
+<p>select ‘spool cnt_s.log  ‘ from dual;</p>
+<p>select ‘alter session force parallel query parallel 8;  ‘ from dual;</p>
+<p>select ‘select rpad(‘’’||owner||’.’||table_name||’’’’||’,50,’’ ‘’)||’’|’’||trim(count(*))’||’ from ‘||owner||’.’||table_name||’;’ from dba_tables where owner IN (&amp;U) order by owner,table_name;</p>
+<p>select ‘exit;’ from dual;</p>
+<p>set heading on </p>
+<p>set pagesize 10000  </p>
+<p>set linesize 200</p>
+<p>\2. 目标端PDB操作</p>
+<p>===================================================================================================================================================</p>
+<p>注：目标端环境搭建及PDB创建完成</p>
+<p>2.1 PDB创建相关表空间</p>
+<hr>
+<p>show pdbs</p>
+<p>alter session set container=XXX;</p>
+<p>create tablespace KTS_JZTA_HIS    datafile ‘+DATADG2’ size 200M autoextend on;</p>
+<p>alter tablespace KTS_JZTA_HIS add   datafile ‘+DATADG2’ size 200M autoextend on;</p>
+<p>KTS_JZTA_HIS   需要空间1946.284G</p>
+<p>重复80次</p>
+<p>查看表空间：</p>
+<p>set lines 222 pages 222</p>
+<p>COLUMN ts_name     format a20    heading “Tablespace”</p>
+<p>​    COLUMN unalloc_size  format 999,999  heading “Unalloc(MB)”</p>
+<p>​    COLUMN used_size    format 999,999,999  heading “Used(MB)”</p>
+<p>​    COLUMN free_size    format 999,999  heading “Free(MB)”</p>
+<p>​    COLUMN capacity    format 99,99   heading “Used_pct(%)”</p>
+<p>SELECT a.tablespace_name ts_name</p>
+<p>   ,a.unalloc_size</p>
+<p>   ,nvl(f.free_size, 0) free_size</p>
+<p>   ,a.used_size - nvl(f.free_size, 0) used_size</p>
+<p>   ,round((a.used_size - nvl(f.free_size, 0)) /</p>
+<p>​       (a.unalloc_size + a.used_size)</p>
+<p>​      ,2)*100 capacity</p>
+<p> FROM (SELECT tablespace_name</p>
+<p>​       ,round(SUM(bytes) / 1024 / 1024) free_size</p>
+<p>​       ,round(AVG(bytes)/1024/1024) avg_size</p>
+<p>​     FROM dba_free_space</p>
+<p>​     GROUP BY tablespace_name) f</p>
+<p>   ,(SELECT tablespace_name</p>
+<p>​       ,round(SUM(user_bytes) / 1024 / 1024) used_size</p>
+<p>​       ,round(SUM(decode(autoextensible</p>
+<p>​                ,’YES’</p>
+<p>​                ,decode(sign(maxbytes - user_bytes)</p>
+<p>​                   ,-1</p>
+<p>​                   ,0</p>
+<p>​                   ,maxbytes - user_bytes)</p>
+<p>​                ,0)) / 1024 / 1024) unalloc_size</p>
+<p>​     FROM dba_data_files</p>
+<p>​     WHERE status=’AVAILABLE’</p>
+<p>​     GROUP BY tablespace_name) a</p>
+<p>WHERE 1 = 1</p>
+<p>  AND a.tablespace_name = f.tablespace_name(+)</p>
+<p>ORDER BY capacity DESC;</p>
+<p>2.2 创建PFOFILE</p>
+<hr>
+<p>create profile others limit PASSWORD_GRACE_TIME UNLIMITED;</p>
+<p>alter profile others limit PASSWORD_LIFE_TIME unlimited;</p>
+<p>alter profile others limit PASSWORD_LOCK_TIME unlimited;</p>
+<p>alter profile others limit PASSWORD_GRACE_TIME unlimited;</p>
+<p>alter profile others limit FAILED_LOGIN_ATTEMPTS unlimited;</p>
+<p>set line 400 pagesize 50000</p>
+<p>col PROFILE for a20</p>
+<p>col RESOURCE_NAME for a30</p>
+<p>col LIMIT for a30</p>
+<p>select * from dba_profiles where resource_type=’PASSWORD’ order by profile,resource_name;</p>
+<p>2.3 确认用户不存在</p>
+<hr>
+<p>select username,account_status from dba_users where username=’JZTA_HIS’;</p>
+<p>2.4 创建directory</p>
+<hr>
+<p>set linesize 400 pagesize 100</p>
+<p>col OWNER for a5  </p>
+<p>col DIRECTORY_NAME for a22</p>
+<p>col DIRECTORY_PATH for a80</p>
+<p>select * from dba_directories;</p>
+<p>!df -h</p>
+<p>!mkdir /home/oracle/his_dir</p>
+<p>create directory pyas_his_dir as ‘/home/oracle/his_dir’;</p>
+<p>2.5 导入数据</p>
+<hr>
+<p>22、导入语句</p>
+<p>nohup impdp &quot;sys/oracle@pyasec1 as sysdba&quot; schemas=JZTA_HIS directory=pyas_his_dir dumpfile=pyas_his_20200318_p4_%U.dmp paralllel=4 logfile=impdp_pyas_his_20200318_p4.log &amp;</p>
+<p>2.6 对象比对</p>
+<hr>
+<p>define U=”‘&amp;USERNAME’”</p>
+<p>set verify off</p>
+<p>set feedback off</p>
+<p>set lines 222 pages 222</p>
+<p>COLUMN owner      FORMAT a22         HEADING ‘Owner’      ENTMAP off</p>
+<p>COLUMN tablespace_name FORMAT a25         HEADING ‘Tablespace Name’ ENTMAP off</p>
+<p>COLUMN segment_type   FORMAT a25         HEADING ‘Segment Type’   ENTMAP off</p>
+<p>COLUMN seg_count    FORMAT 999,999,999,999   HEADING ‘Segment Count’  ENTMAP off</p>
+<p>col OBJECT_TYPE for a22</p>
+<p>col INDEX_TYPE for a22</p>
+<p>col uniqueness for a15</p>
+<p>col status for a15</p>
+<p>break on report on owner</p>
+<p>set pagesize 10000 lines 222</p>
+<p>select owner,OBJECT_TYPE,status,count(*) from dba_objects where owner IN (&amp;U) and (owner,object_name) not in (select owner,object_name from dba_recyclebin where owner in (&amp;U))</p>
+<p>group by owner,OBJECT_TYPE,status order by owner,OBJECT_TYPE,status;</p>
+<p>col table_name    for a33</p>
+<p>col CONSTRAINT_NAME for a22</p>
+<p>col CONSTRAINT_TYPE for a2</p>
+<p>col INDEX_NAME    for a30</p>
+<p>select owner,CONSTRAINT_TYPE,STATUS,count(*) from dba_constraints where owner IN (&amp;U) and table_name not like ‘BIN$%’ group by owner,CONSTRAINT_TYPE,STATUS order by 1,2,3;</p>
+<p>select index_type,uniqueness,status,count(*) from dba_indexes where owner IN (&amp;U) group by index_type,uniqueness,status order by 1,2,3;</p>
+<p>2.7 重新编译失效对象（如有）</p>
+<hr>
+<p>SQL&gt; @?/rdbms/admin/utlrp</p>
+<p>2.8 收集统计信息</p>
+<hr>
+<p>set timing on</p>
+<p>exec dbms_stats.gather_schema_stats(‘JZTA_HIS’,degree=&gt;16,no_invalidate=&gt;false,method_opt=&gt; ‘for all columns size repeat’,cascade =&gt; true);</p>
+<p>2.9 Sequence比对</p>
+<hr>
+<p>col SEQUENCE_OWNER for a22</p>
+<p>col SEQUENCE_NAME for a33</p>
+<p>col MAX_VALUE for 99999999999999999999999999999999</p>
+<p>col LAST_NUMBER for 99999999999999999999999999999999</p>
+<p>select * from dba_sequences where SEQUENCE_OWNER IN (‘JZTA_HIS’) order by 1,2;</p>
+<p>2.10 检查同义词</p>
+<hr>
+<p>select owner,SYNONYM_NAME,TABLE_OWNER,TABLE_NAME,DB_LINK from dba_synonyms where TABLE_OWNER in (‘JZTA_HIS’) order by 1;</p>
+<p>2.11 启动定时任务</p>
+<hr>
+<p>select ‘exec dbms_ijob.broken(‘||job||’,false);’ from dba_jobs where log_user in (‘JZTA_HIS’);</p>
+<p>再次确认</p>
+<p>select job,what,broken from dba_jobs where log_user in (‘JZTA_HIS’);</p>
+<p>2.12 解锁用户</p>
+<hr>
+<p>alter user JZTA_HIS account unlock;</p>
+<p>2.13 应用测试</p>
+<hr>
+<p>\3. 源端数据清理</p>
+<p>===================================================================================================================================================</p>
+<p>3.1 删除用户JZTA_HIS</p>
+<hr>
+<p>drop user JZTA_HIS cascade;</p>
+<p>3.2 表空间清理</p>
+<hr>
+<p>- 检查表空间KTS_JZTA_HIS是否存在其他对象：</p>
+<p>col m for 999,999,999</p>
+<p>SELECT</p>
+<p>   owner</p>
+<p> ,  tablespace_name</p>
+<p> , segment_type</p>
+<p> ,  round(sum(bytes)/1024/1024) m</p>
+<p> , count(*)  seg_count</p>
+<p>FROM</p>
+<p>  dba_segments where tablespace_name IN (‘KTS_JZTA_HIS’) and segment_name not like ‘BIN$%’</p>
+<p>GROUP BY</p>
+<p>  owner</p>
+<p> , tablespace_name</p>
+<p> , segment_type</p>
+<p>ORDER BY</p>
+<p>  owner</p>
+<p> , tablespace_name</p>
+<p> , segment_type;</p>
+<p> set verify on</p>
+<p>set feedback on</p>
+<p>- 如果表空间KTS_JZTA_HIS为空，可以直接删除此表空间：</p>
+<p>drop tablespace KTS_JZTA_HIS including contents and datafiles;</p>
+<p>- 如果表空间KTS_JZTA_HIS为空，可以通过resize缩小数据文件</p>
+<p>alter database datafile xxx resize xxx;</p>
+<hr>
+<p>修改SQLnet文件（待确认）</p>
+<p>su - grid</p>
+<p>cd $ORACLE_HOME/network/admin</p>
+<p>vim sqlnet.ora</p>
+<p>NAMES.DIRECTORY_PATH= (TNSNAMES,EZCONNECT)</p>
+<p>SQLNET.ALLOWED_LOGON_VERSION = 8</p>
+<p>SQLNET.ALLOWED_LOGON_VERSION_SERVER=8</p>
+<p>SQLNET.ALLOWED_LOGON_VERSION_CLIENT=8</p>
+<p>lsnrctl stop</p>
+<p>lsnrctl start</p>
+<p>lsnrctl status</p>
+<p>#########################额外命令############################</p>
+<p>删除非空表空间和数据文件</p>
+<p>drop tablespace 表空间名 including contents and datafiles;</p>
+<p>删除用户</p>
+<p>drop user 用户名 cascade;</p>
+<p>###########################################################</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Oracle/%E8%BF%81%E7%A7%BB%E7%9B%B8%E5%85%B3/XTTS/XTTS/" rel="next" title="骚年-Markdown/Oracle/迁移相关/XTTS/XTTS">
+                <i class="fa fa-chevron-left"></i> 骚年-Markdown/Oracle/迁移相关/XTTS/XTTS
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Oracle/%E8%BF%81%E7%A7%BB%E7%9B%B8%E5%85%B3/%E6%95%B0%E6%8D%AE%E6%B3%B5%E6%93%8D%E4%BD%9C%E6%A0%B7%E4%BE%8B-2020%E5%B9%B45%E6%9C%8826%E6%97%A5/" rel="prev" title="骚年-Markdown/Oracle/迁移相关/数据泵操作样例-2020年5月26日">
+                骚年-Markdown/Oracle/迁移相关/数据泵操作样例-2020年5月26日 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">SaoSao Nian</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SaoSao Nian</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="dbca -silent -helpUsage: dbca [] [ ] Following are the possible flags: -help -contextId &lt;RAC | SI&gt; -ignorePreReqs - Ignore prerequisite checks for current operation. -ignorePrereqFailure - Ignor">
+<meta property="og:type" content="article">
+<meta property="og:title" content="骚年-Markdown&#x2F;Oracle&#x2F;常用操作&#x2F;18C-dbca -silent -help">
+<meta property="og:url" content="http://yoursite.com/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Oracle/%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/18C-dbca%20-silent%20-help/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="dbca -silent -helpUsage: dbca [] [ ] Following are the possible flags: -help -contextId &lt;RAC | SI&gt; -ignorePreReqs - Ignore prerequisite checks for current operation. -ignorePrereqFailure - Ignor">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-16T06:00:58.745Z">
+<meta property="article:modified_time" content="2020-06-17T08:04:23.846Z">
+<meta property="article:author" content="SaoSao Nian">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/07/16/骚年-Markdown/Oracle/常用操作/18C-dbca -silent -help/"/>
+
+
+
+
+
+  <title>骚年-Markdown/Oracle/常用操作/18C-dbca -silent -help | Hexo</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Oracle/%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/18C-dbca%20-silent%20-help/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="SaoSao Nian">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">骚年-Markdown/Oracle/常用操作/18C-dbca -silent -help</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-16T14:00:58+08:00">
+                2020-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="dbca-silent-help"><a href="#dbca-silent-help" class="headerlink" title="dbca -silent -help"></a>dbca -silent -help</h1><p>Usage: dbca [<flag>] [<command> <option>]</p>
+<p>Following are the possible flags:</p>
+<p>-help</p>
+<p>-contextId &lt;RAC | SI&gt;</p>
+<p>-ignorePreReqs - Ignore prerequisite checks for current operation.</p>
+<p>-ignorePrereqFailure - Ignore all prerequisites failures.</p>
+<p>-silent - This flag allows you to carry on configuration in silent mode.</p>
+<p>-<command></p>
+<p>Following are the possible commands:</p>
+<p>-addInstance - Command to Add an instance to an admin managed cluster database.</p>
+<p>-configureDatabase - Command to Configure a database.</p>
+<p>-configurePluggableDatabase - Command to Configure a pluggable database.</p>
+<p>-createCloneTemplate - Command to Create a clone template from an existing database.</p>
+<p>-createDatabase - Command to Create a database.</p>
+<p>-createDuplicateDB - Command to Duplicate a database.</p>
+<p>-createPluggableDatabase - Command to Create a pluggable database.</p>
+<p>-createTemplateFromDB - Command to Create a template from an existing database.</p>
+<p>-createTemplateFromTemplate - Command to Create a template from an existing template.</p>
+<p>-deleteDatabase - Command to Delete a database.</p>
+<p>-deleteInstance - Command to Delete an instance from an admin managed cluster database.</p>
+<p>-deletePluggableDatabase - Command to Delete a pluggable database.</p>
+<p>-deleteTemplate - Command to delete a template.</p>
+<p>-executePrereqs - Command to execute prerequisite checks.</p>
+<p>-generateScripts - Command to Generate scripts which can be used to create database.</p>
+<p>-relocatePDB - Command to Relocate a pluggable database.</p>
+<p>-unplugDatabase - Command to Unplug a pluggable database.</p>
+<p>===================================================================================================</p>
+<p>dbca -silent -createDuplicateDB -help</p>
+<p>===================================================================================================</p>
+<p>-createDuplicateDB - Command to Duplicate a database.</p>
+<p>-gdbName <Global database name></p>
+<p>-primaryDBConnectionString &lt;EZCONNECT string to connect to primary database for example “host:port/servicename”&gt;</p>
+<p>-sid <Database system identifier></p>
+<p>[-useWalletForDBCredentials &lt;true | false&gt; Specify true to load database credentials from wallet]</p>
+<p>-dbCredentialsWalletLocation <Path of the directory containing the wallet files></p>
+<p>[-dbCredentialsWalletPassword <Password to open wallet with auto login disabled>]</p>
+<p>[-initParams <Comma separated list of name=value pairs>]</p>
+<p>[-initParamsEscapeChar <Specify escape character for comma when a specific initParam has multiple values.If the escape character is not specified backslash is the default escape character>]</p>
+<p>[-policyManaged | -adminManaged]</p>
+<p>[-policyManaged &lt;Policy managed database, default option is Admin managed database&gt;]</p>
+<p>-serverPoolName <Specify the single server pool name in case of create server pool or comma separated list in case of existing server pools></p>
+<p>[-pqPoolName <value>]</p>
+<p>[-createServerPool &lt;Create a new server pool, which will be used by the database&gt;]</p>
+<p>[-pqPoolName <value>]</p>
+<p>[-forceServerPoolCreation <To create server pool by force when adequate free servers are not available. This may affect the database which is already in running mode>]</p>
+<p>[-pqCardinality <value>]</p>
+<p>[-cardinality &lt;Specify the cardinality of the new server pool that is to be created, default is the number of qualified nodes&gt;]</p>
+<p>[-adminManaged &lt;Admin managed database, this is default option&gt;]</p>
+<p>[-datafileDestination <Destination directory for all database files>]</p>
+<p>[-nodelist <Node names separated by comma for the database>]</p>
+<p>[-databaseConfigType &lt;SINGLE | RAC | RACONENODE&gt;]</p>
+<p>[-RACOneNodeServiceName <Service name for the service to be created for RAC One Node database. This option is mandatory when the databaseConfigType is RACONENODE>]</p>
+<p>[-createAsStandby <Option to create a standby database>]</p>
+<p>[-dbUniqueName <db_unique_name for standby db>]</p>
+<p>[-customScripts <A comma separated list of SQL scripts which needs to be run post db creation.The scripts are run in order they are listed>]</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Oracle/%E5%AE%89%E8%A3%85%E6%96%87%E6%A1%A3/%E9%9D%99%E9%BB%98%E5%AE%89%E8%A3%85/silent-11G-oracle-20200609/silent-11G-oracle/" rel="next" title="骚年-Markdown/Oracle/安装文档/静默安装/silent-11G-oracle-20200609/silent-11G-oracle">
+                <i class="fa fa-chevron-left"></i> 骚年-Markdown/Oracle/安装文档/静默安装/silent-11G-oracle-20200609/silent-11G-oracle
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Oracle/%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/2020-06-19_07-02-05/" rel="prev" title="骚年-Markdown/Oracle/常用操作/2020-06-19_07-02-05">
+                骚年-Markdown/Oracle/常用操作/2020-06-19_07-02-05 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">SaoSao Nian</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#dbca-silent-help"><span class="nav-number">1.</span> <span class="nav-text">dbca -silent -help</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SaoSao Nian</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

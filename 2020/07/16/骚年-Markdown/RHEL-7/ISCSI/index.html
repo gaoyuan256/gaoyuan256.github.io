@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="服务端安装ISCSI target服务1yum -y install targetd targetcli    启动targetd服务并加入开机启动项123456systemctl start targetd systemctl enable targetd systemctl status targetd #Created symlink from &#x2F;etc&#x2F;systemd&#x2F;system&#x2F;mul">
+<meta property="og:type" content="article">
+<meta property="og:title" content="骚年-Markdown&#x2F;RHEL-7&#x2F;ISCSI">
+<meta property="og:url" content="http://yoursite.com/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/RHEL-7/ISCSI/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="服务端安装ISCSI target服务1yum -y install targetd targetcli    启动targetd服务并加入开机启动项123456systemctl start targetd systemctl enable targetd systemctl status targetd #Created symlink from &#x2F;etc&#x2F;systemd&#x2F;system&#x2F;mul">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-16T06:00:59.980Z">
+<meta property="article:modified_time" content="2020-06-03T12:32:32.397Z">
+<meta property="article:author" content="SaoSao Nian">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/07/16/骚年-Markdown/RHEL-7/ISCSI/"/>
+
+
+
+
+
+  <title>骚年-Markdown/RHEL-7/ISCSI | Hexo</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/RHEL-7/ISCSI/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="SaoSao Nian">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">骚年-Markdown/RHEL-7/ISCSI</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-16T14:00:59+08:00">
+                2020-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h2><h3 id="安装ISCSI-target服务"><a href="#安装ISCSI-target服务" class="headerlink" title="安装ISCSI target服务"></a>安装ISCSI target服务</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install targetd targetcli</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="启动targetd服务并加入开机启动项"><a href="#启动targetd服务并加入开机启动项" class="headerlink" title="启动targetd服务并加入开机启动项"></a>启动targetd服务并加入开机启动项</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">systemctl start targetd </span><br><span class="line">systemctl enable targetd </span><br><span class="line">systemctl status targetd </span><br><span class="line"><span class="meta">#</span><span class="bash">Created symlink from /etc/systemd/system/multi-user.target.wants/targetd.service to /usr/lib/systemd/system/targetd.service.</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">ln -s <span class="string">'/usr/lib/systemd/system/targetd.service'</span> <span class="string">'/etc/systemd/system/multi-user.target.wants/targetd.service'</span></span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="创建存储对象"><a href="#创建存储对象" class="headerlink" title="创建存储对象"></a>创建存储对象</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">targetcli</span><br><span class="line">Warning: Could not load preferences file /root/.targetcli/prefs.bin.</span><br><span class="line">targetcli shell version 2.1.fb46</span><br><span class="line">Copyright 2011-2013 by Datera, Inc and others.</span><br><span class="line">For help on commands, type 'help'.</span><br><span class="line"><span class="meta">/&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="查看当前的存储目录树"><a href="#查看当前的存储目录树" class="headerlink" title="查看当前的存储目录树"></a>查看当前的存储目录树</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">/&gt;</span><span class="bash"> ls</span></span><br><span class="line">o- / .............................. [...]</span><br><span class="line">  o- backstores ................... [...]</span><br><span class="line">  | o- block ...................... [Storage Objects: 0]</span><br><span class="line">  | o- fileio ..................... [Storage Objects: 0]</span><br><span class="line">  | o- pscsi ...................... [Storage Objects: 0]</span><br><span class="line">  | o- ramdisk .................... [Storage Objects: 0]</span><br><span class="line">  o- iscsi ........................ [Targets: 0]</span><br><span class="line">  o- loopback ..................... [Targets: 0]</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="使用-dev-sdb创建disk0"><a href="#使用-dev-sdb创建disk0" class="headerlink" title="使用/dev/sdb创建disk0"></a>使用/dev/sdb创建disk0</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">/&gt;</span><span class="bash"> <span class="built_in">cd</span> backstores/block </span></span><br><span class="line"><span class="meta">/backstores/block&gt;</span><span class="bash"> create disk0 /dev/sdb</span></span><br><span class="line">Created block storage object disk0 using /dev/sdb.</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="创建iscsi-target目标-创建lun设备"><a href="#创建iscsi-target目标-创建lun设备" class="headerlink" title="创建iscsi target目标 创建lun设备"></a>创建iscsi target目标 创建lun设备</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">/backstores/block&gt;</span><span class="bash"> <span class="built_in">cd</span> /iscsi</span></span><br><span class="line"><span class="meta">/iscsi&gt;</span><span class="bash"> create iqn.2020-06.com.gaoyuan:system1</span></span><br><span class="line">Created target iqn.2020-06.com.gaoyuan:system1.</span><br><span class="line">Created TPG 1.</span><br><span class="line">Global pref auto_add_default_portal=true</span><br><span class="line">Created default portal listening on all IPs (0.0.0.0), port 3260.</span><br><span class="line"></span><br><span class="line"><span class="meta">/iscsi&gt;</span><span class="bash"> <span class="built_in">cd</span> iqn.2020-06.com.gaoyuan:system1/</span></span><br><span class="line"></span><br><span class="line">/iscsi/iqn.20...:system1/tpg1&gt; cd tpg1/luns </span><br><span class="line">/iscsi/iqn.20...8b7/tpg1/luns&gt; create /backstores/block/disk0</span><br><span class="line">Created LUN 0.</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="设置访问控制列表"><a href="#设置访问控制列表" class="headerlink" title="设置访问控制列表"></a>设置访问控制列表</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/iscsi/iqn.20...em1/tpg1/luns&gt; cd ../acls</span><br><span class="line">/iscsi/iqn.20...em1/tpg1/acls&gt; create iqn.2020-06.com.gaoyuan:system1:client</span><br><span class="line">Created Node ACL for iqn.2020-06.com.gaoyuan:system1:client</span><br><span class="line">Created mapped LUN 0.</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="添加允许监听的ip地址"><a href="#添加允许监听的ip地址" class="headerlink" title="添加允许监听的ip地址"></a>添加允许监听的ip地址</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/iscsi/iqn.20...em1/tpg1/acls&gt; cd ../portals/</span><br><span class="line">/iscsi/iqn.20.../tpg1/portals&gt; ls</span><br><span class="line"></span><br><span class="line">/iscsi/iqn.20.../tpg1/portals&gt; delete 0.0.0.0 3260 </span><br><span class="line">Deleted network portal 0.0.0.0:3260</span><br><span class="line"></span><br><span class="line">/iscsi/iqn.20.../tpg1/portals&gt; create 192.168.10.146</span><br><span class="line">Using default IP port 3260</span><br><span class="line">Created network portal 192.168.10.146:3260.</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="保存策略"><a href="#保存策略" class="headerlink" title="保存策略"></a>保存策略</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">必须<span class="built_in">exit</span>,不能ctrl+c，否则配置失效</span></span><br><span class="line">/iscsi/iqn.20.../tpg1/portals&gt; exit</span><br><span class="line">Global pref auto_save_on_exit=true</span><br><span class="line">Last 10 configs saved in /etc/target/backup.</span><br><span class="line">Configuration saved to /etc/target/saveconfig.json</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="创建防火墙允许规则"><a href="#创建防火墙允许规则" class="headerlink" title="创建防火墙允许规则"></a>创建防火墙允许规则</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# firewall-cmd --permanent --add-port=3260/tcp</span><br><span class="line">success</span><br><span class="line">[root@localhost ~]# firewall-cmd --reload</span><br><span class="line">success</span><br><span class="line"></span><br><span class="line">iptables -L</span><br><span class="line"></span><br><span class="line">iptables -X</span><br><span class="line"></span><br><span class="line">iptables -F</span><br><span class="line"></span><br><span class="line">iptables -L</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="重启服务"><a href="#重启服务" class="headerlink" title="重启服务"></a>重启服务</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart targetd </span><br><span class="line">systemctl status targetd</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="客户机"><a href="#客户机" class="headerlink" title="客户机"></a>客户机</h2><h3 id="安装-iscsi-initiator-utils"><a href="#安装-iscsi-initiator-utils" class="headerlink" title="安装 iscsi-initiator-utils"></a>安装 iscsi-initiator-utils</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@client ~]# yum -y install iscsi-initiator-utils</span><br><span class="line">systemctl restart iscsid &amp; systemctl enable iscsid</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="编辑的iscsi客户端名称文件"><a href="#编辑的iscsi客户端名称文件" class="headerlink" title="编辑的iscsi客户端名称文件"></a>编辑的iscsi客户端名称文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@orcldg ~]# cat /etc/iscsi/initiatorname.iscsi</span><br><span class="line">InitiatorName=iqn.1994-05.com.redhat:6a99649df487</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">添加</span></span><br><span class="line"></span><br><span class="line">InitiatorName=iqn.2020-06.com.gaoyuan:system1:client</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="连接iscsi服务端的可用存储设备"><a href="#连接iscsi服务端的可用存储设备" class="headerlink" title="连接iscsi服务端的可用存储设备"></a>连接iscsi服务端的可用存储设备</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@client ~]# iscsiadm -m discovery -t st -p 192.168.10.146</span><br><span class="line">192.168.10.146:3260,1 iqn.2020-06.com.gaoyuan:system1</span><br><span class="line"></span><br><span class="line">[root@client ~]# iscsiadm -m node -T iqn.2020-06.com.gaoyuan:system1 -p 192.168.10.146 --login</span><br><span class="line">Logging in to [iface: default, target: iqn.2003-01.org.linux-iscsi.localhost.x8664:sn.9d393e04cca1, portal: 192.168.10.10,3260] (multiple)</span><br><span class="line">Login to [iface: default, target: iqn.2003-01.org.linux-iscsi.localhost.x8664:sn.9d393e04cca1, portal: 192.168.10.10,3260] successful.</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">发现多了一块硬盘设备  </span></span><br><span class="line">[root@client ~]# file /dev/sdc </span><br><span class="line">/dev/sdc: block special</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="格式化硬盘"><a href="#格式化硬盘" class="headerlink" title="格式化硬盘"></a>格式化硬盘</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@client ~]# mkfs.xfs /dev/sdc</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="挂载硬盘"><a href="#挂载硬盘" class="headerlink" title="挂载硬盘"></a>挂载硬盘</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@client ~]# mount /dev/sdc /iscsi/</span><br><span class="line">[root@client ~]# df -h</span><br><span class="line">文件系统        容量  已用  可用 已用% 挂载点</span><br><span class="line">/dev/sda2        30G  6.5G   23G   22% /</span><br><span class="line">devtmpfs        906M     0  906M    0% /dev</span><br><span class="line">tmpfs           914M   80K  914M    1% /dev/shm</span><br><span class="line">tmpfs           914M  8.9M  905M    1% /run</span><br><span class="line">tmpfs           914M     0  914M    0% /sys/fs/cgroup</span><br><span class="line">/dev/sda5        15G  132M   15G    1% /var</span><br><span class="line">/dev/sda1       297M   91M  207M   31% /boot</span><br><span class="line">/dev/sdc        4.0G   33M  4.0G    1% /iscsi</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="添加到开机挂载项"><a href="#添加到开机挂载项" class="headerlink" title="添加到开机挂载项"></a>添加到开机挂载项</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@client ~]# blkid | grep /dev/sdc</span><br><span class="line">/dev/sdc: UUID="195b8cf9-e8c9-4d42-93f7-a745fc0aa470" TYPE="xfs" </span><br><span class="line">[root@client ~]# vim /etc/fstab</span><br><span class="line"><span class="meta">#</span><span class="bash">在最后一行加入下面代码</span></span><br><span class="line">UUID=195b8cf9-e8c9-4d42-93f7-a745fc0aa470 /iscsi xfs defualt_netdev 0 0</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/RHEL-6/RHEL-6%E6%A8%A1%E6%9D%BF%E5%85%8B%E9%9A%86%E4%B9%8B%E7%BD%91%E5%8D%A1%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/" rel="next" title="骚年-Markdown/RHEL-6/RHEL-6模板克隆之网卡相关操作">
+                <i class="fa fa-chevron-left"></i> 骚年-Markdown/RHEL-6/RHEL-6模板克隆之网卡相关操作
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/RHEL-7/Linux-system-initialization-gy-2020%E5%B9%B46%E6%9C%888%E6%97%A5/" rel="prev" title="骚年-Markdown/RHEL-7/Linux-system-initialization-gy-2020年6月8日">
+                骚年-Markdown/RHEL-7/Linux-system-initialization-gy-2020年6月8日 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">SaoSao Nian</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#服务端"><span class="nav-number">1.</span> <span class="nav-text">服务端</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装ISCSI-target服务"><span class="nav-number">1.1.</span> <span class="nav-text">安装ISCSI target服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动targetd服务并加入开机启动项"><span class="nav-number">1.2.</span> <span class="nav-text">启动targetd服务并加入开机启动项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建存储对象"><span class="nav-number">1.3.</span> <span class="nav-text">创建存储对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看当前的存储目录树"><span class="nav-number">1.4.</span> <span class="nav-text">查看当前的存储目录树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-dev-sdb创建disk0"><span class="nav-number">1.5.</span> <span class="nav-text">使用&#x2F;dev&#x2F;sdb创建disk0</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建iscsi-target目标-创建lun设备"><span class="nav-number">1.6.</span> <span class="nav-text">创建iscsi target目标 创建lun设备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置访问控制列表"><span class="nav-number">1.7.</span> <span class="nav-text">设置访问控制列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加允许监听的ip地址"><span class="nav-number">1.8.</span> <span class="nav-text">添加允许监听的ip地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#保存策略"><span class="nav-number">1.9.</span> <span class="nav-text">保存策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建防火墙允许规则"><span class="nav-number">1.10.</span> <span class="nav-text">创建防火墙允许规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重启服务"><span class="nav-number">1.11.</span> <span class="nav-text">重启服务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#客户机"><span class="nav-number">2.</span> <span class="nav-text">客户机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-iscsi-initiator-utils"><span class="nav-number">2.1.</span> <span class="nav-text">安装 iscsi-initiator-utils</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编辑的iscsi客户端名称文件"><span class="nav-number">2.2.</span> <span class="nav-text">编辑的iscsi客户端名称文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#连接iscsi服务端的可用存储设备"><span class="nav-number">2.3.</span> <span class="nav-text">连接iscsi服务端的可用存储设备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#格式化硬盘"><span class="nav-number">2.4.</span> <span class="nav-text">格式化硬盘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#挂载硬盘"><span class="nav-number">2.5.</span> <span class="nav-text">挂载硬盘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加到开机挂载项"><span class="nav-number">2.6.</span> <span class="nav-text">添加到开机挂载项</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SaoSao Nian</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
