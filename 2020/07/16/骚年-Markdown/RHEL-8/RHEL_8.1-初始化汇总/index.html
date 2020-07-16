@@ -1,25 +1,226 @@
-extends includes/layout.pug
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
 
-block content
-  article#post(class="")
-    #article-container.post-content!=page.content
-    include includes/post/post-copyright.pug
-    .tag_share
-      if (theme.post_meta.post.tags)
-        .post-meta__tag-list
-          each item, index in page.tags.data
-            a(href=url_for(item.path)).post-meta__tags #[=item.name]
-      !=partial('includes/share/index', {}, {cache:theme.fragment_cache})
+  
+  <title>骚年-Markdown/RHEL-8/RHEL_8.1-初始化汇总 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="系统初始化相关[TOC] Cockpit（飞机驾驶舱）使用方法在web浏览器中查看服务器并使用鼠标执行系统任务。很容易管理存储、配置网络和检查日志等操作。 1) RHEL 8 自动安装了 Cockpit，Cockpit 所需的防火墙端口会自动打开2) Cockpit 界面可用于将基于策略的解密（PBD）规则应用于受管系统上的磁盘3) 对于在身份管理（IdM）域中注册的系统，Cockpit 默认使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="骚年-Markdown&#x2F;RHEL-8&#x2F;RHEL_8.1-初始化汇总">
+<meta property="og:url" content="http://yoursite.com/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/RHEL-8/RHEL_8.1-%E5%88%9D%E5%A7%8B%E5%8C%96%E6%B1%87%E6%80%BB/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="系统初始化相关[TOC] Cockpit（飞机驾驶舱）使用方法在web浏览器中查看服务器并使用鼠标执行系统任务。很容易管理存储、配置网络和检查日志等操作。 1) RHEL 8 自动安装了 Cockpit，Cockpit 所需的防火墙端口会自动打开2) Cockpit 界面可用于将基于策略的解密（PBD）规则应用于受管系统上的磁盘3) 对于在身份管理（IdM）域中注册的系统，Cockpit 默认使用">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-16T06:01:00.183Z">
+<meta property="article:modified_time" content="2020-07-05T07:03:32.324Z">
+<meta property="article:author" content="SaoSao Nian">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
         
-    if theme.reward.enable
-      !=partial('includes/post/reward', {}, {cache:theme.fragment_cache})
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-骚年-Markdown/RHEL-8/RHEL_8.1-初始化汇总" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/RHEL-8/RHEL_8.1-%E5%88%9D%E5%A7%8B%E5%8C%96%E6%B1%87%E6%80%BB/" class="article-date">
+  <time datetime="2020-07-16T06:01:00.183Z" itemprop="datePublished">2020-07-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      骚年-Markdown/RHEL-8/RHEL_8.1-初始化汇总
+    </h1>
+  
 
-    //- ad
-    if theme.ad && theme.ad.post
-      .post-ad!=theme.ad.post
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="系统初始化相关"><a href="#系统初始化相关" class="headerlink" title="系统初始化相关"></a>系统初始化相关</h1><p>[TOC]</p>
+<h2 id="Cockpit（飞机驾驶舱）使用方法"><a href="#Cockpit（飞机驾驶舱）使用方法" class="headerlink" title="Cockpit（飞机驾驶舱）使用方法"></a>Cockpit（飞机驾驶舱）使用方法</h2><p>在web浏览器中查看服务器并使用鼠标执行系统任务。很容易管理存储、配置网络和检查日志等操作。</p>
+<p>1) RHEL 8 自动安装了 Cockpit，Cockpit 所需的防火墙端口会自动打开<br>2) Cockpit 界面可用于将基于策略的解密（PBD）规则应用于受管系统上的磁盘<br>3) 对于在身份管理（IdM）域中注册的系统，Cockpit 默认使用域的集中管理的 IdM 资源<br>4) Cockpit 菜单和页面可以在移劢浏览器上导航<br>5) 可以从 Cockpit Web 界面创建和管理虚拟机<br>6) 现在可以将“虚拟机”页面添加到 Cockpit 界面，该界面使用户可以创建和管理基于 libvirt 的虚拟机</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">安装cockpit</span></span><br><span class="line">rpm -qa | grep cockpit</span><br><span class="line">dnf -y install cockpit</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">虚拟机管理模块</span></span><br><span class="line">dnf install -y cockpit-machines</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">启用cockpit</span></span><br><span class="line"><span class="meta">#</span><span class="bash">设置开机自启动同时开启服务一条命令就可以搞定</span></span><br><span class="line">systemctl enable --now cockpit.socket</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">使用cockpit</span></span><br><span class="line"><span class="meta">#</span><span class="bash">Cockpit监听9090端口</span></span><br><span class="line"></span><br><span class="line">netstat -atnpu | grep 9090</span><br></pre></td></tr></table></figure>
 
-    include includes/pagination.pug
-    if theme.related_post && theme.related_post.enable
-      != related_posts(page,site.posts)
-    if page.comments !== false
-      include includes/comments/index.pug
+<p>打开firefox转入 <a href="https://192.168.10.123:9090" target="_blank" rel="noopener">https://192.168.10.123:9090</a></p>
+<h2 id="配置yum、dnf"><a href="#配置yum、dnf" class="headerlink" title="配置yum、dnf"></a>配置yum、dnf</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /media/cdrom          </span><br><span class="line"></span><br><span class="line">umount /dev/sr0                </span><br><span class="line">mount /dev/cdrom /media/cdrom  </span><br><span class="line">mount /dev/hdc /media/cdrom    </span><br><span class="line">mount /dev/scd0 /media/cdrom   </span><br><span class="line">mount /dev/sr0 /media/cdrom    </span><br><span class="line"></span><br><span class="line">df -h</span><br><span class="line"></span><br><span class="line">cd /etc/yum.repos.d/</span><br><span class="line">mkdir -p /etc/yum.repos.d/bak    &amp;&gt; /dev/null</span><br><span class="line">mv -f /etc/yum.repos.d/*.repo /etc/yum.repos.d/bak &amp;&gt; /dev/null</span><br><span class="line"></span><br><span class="line">cat &lt;&lt;END &gt; /etc/yum.repos.d/weizhi.repo</span><br><span class="line">[Local_AppStream]</span><br><span class="line">name=Local_AppStream</span><br><span class="line">baseurl=file:///media/cdrom/AppStream</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=0</span><br><span class="line"></span><br><span class="line">[Local_BaseOS]</span><br><span class="line">name=Local_BaseOS</span><br><span class="line">baseurl=file:///media/cdrom/BaseOS</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=0</span><br><span class="line">END</span><br><span class="line"></span><br><span class="line">dnf clean all </span><br><span class="line">dnf makecache</span><br><span class="line">dnf repolist all</span><br><span class="line"></span><br><span class="line">sed -i "s/SELINUX=enforcing/SELINUX=disabled/" /etc/selinux/config</span><br><span class="line"></span><br><span class="line">getenforce </span><br><span class="line">setenforce  0</span><br><span class="line">getenforce </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">Permissive</span></span><br><span class="line"><span class="meta">#</span><span class="bash">Disable</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/RHEL-8/RHEL_8.1-%E5%88%9D%E5%A7%8B%E5%8C%96%E6%B1%87%E6%80%BB/" data-id="ckcoibde70009o0uy5q627i2r" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/RHEL-8/RHEL_8.1-%E6%8C%82%E8%BD%BD%E9%95%9C%E5%83%8F/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          骚年-Markdown/RHEL-8/RHEL_8.1-挂载镜像
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/RHEL-8/12c-redhat8%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">骚年-Markdown/RHEL-8/12c-redhat8安装报错</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/%E7%91%9E%E9%80%9A-RHCE_8.0/2020%E5%B9%B47%E6%9C%885%E6%97%A5/">骚年-Markdown/瑞通-RHCE_8.0/2020年7月5日</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/%E7%91%9E%E9%80%9A-RHCE_8.0/2020%E5%B9%B46%E6%9C%8814%E6%97%A5/">骚年-Markdown/瑞通-RHCE_8.0/2020年6月14日</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/%E7%91%9E%E9%80%9A-RHCE_8.0/2020%E5%B9%B46%E6%9C%8813%E6%97%A5/">骚年-Markdown/瑞通-RHCE_8.0/2020年6月13日</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Windows/%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8F%91%E7%94%9F%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E9%94%99%E8%AF%AF%EF%BC%8C%E8%A6%81%E6%B1%82%E7%9A%84%E5%87%BD%E6%95%B0%E4%B8%8D%E5%8F%97%E6%94%AF%E6%8C%81/">骚年-Markdown/Windows/远程服务器发生身份验证错误，要求的函数不受支持</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Windows/%E8%AE%A1%E7%AE%97MD5%E4%B8%8ESHA1256%E5%80%BC/">骚年-Markdown/Windows/计算MD5与SHA1256值</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 SaoSao Nian<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

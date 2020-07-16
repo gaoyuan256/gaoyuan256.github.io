@@ -1,25 +1,244 @@
-extends includes/layout.pug
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
 
-block content
-  article#post(class="")
-    #article-container.post-content!=page.content
-    include includes/post/post-copyright.pug
-    .tag_share
-      if (theme.post_meta.post.tags)
-        .post-meta__tag-list
-          each item, index in page.tags.data
-            a(href=url_for(item.path)).post-meta__tags #[=item.name]
-      !=partial('includes/share/index', {}, {cache:theme.fragment_cache})
+  
+  <title>骚年-Markdown/Linux-服务/Tuxedo/TUXEDO_9.1安装配置 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="TUXEDO_9.1安装配置1、上传压缩包1234567891011121314151617181920#上传Tuxedo-91.zip#包含以下文件#环境变量文件.bash_profile#license文件LIC-TX91-SDK-128_With-Jolt.txt#补丁包p17629052_91_Linux-x86-64.zip#安装操作文本版tixedo_install.txt#安装操作w">
+<meta property="og:type" content="article">
+<meta property="og:title" content="骚年-Markdown&#x2F;Linux-服务&#x2F;Tuxedo&#x2F;TUXEDO_9.1安装配置">
+<meta property="og:url" content="http://yoursite.com/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Linux-%E6%9C%8D%E5%8A%A1/Tuxedo/TUXEDO_9.1%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="TUXEDO_9.1安装配置1、上传压缩包1234567891011121314151617181920#上传Tuxedo-91.zip#包含以下文件#环境变量文件.bash_profile#license文件LIC-TX91-SDK-128_With-Jolt.txt#补丁包p17629052_91_Linux-x86-64.zip#安装操作文本版tixedo_install.txt#安装操作w">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-16T06:00:43.089Z">
+<meta property="article:modified_time" content="2020-06-15T07:56:29.005Z">
+<meta property="article:author" content="SaoSao Nian">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
         
-    if theme.reward.enable
-      !=partial('includes/post/reward', {}, {cache:theme.fragment_cache})
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-骚年-Markdown/Linux-服务/Tuxedo/TUXEDO_9.1安装配置" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Linux-%E6%9C%8D%E5%8A%A1/Tuxedo/TUXEDO_9.1%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" class="article-date">
+  <time datetime="2020-07-16T06:00:43.089Z" itemprop="datePublished">2020-07-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      骚年-Markdown/Linux-服务/Tuxedo/TUXEDO_9.1安装配置
+    </h1>
+  
 
-    //- ad
-    if theme.ad && theme.ad.post
-      .post-ad!=theme.ad.post
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="TUXEDO-9-1安装配置"><a href="#TUXEDO-9-1安装配置" class="headerlink" title="TUXEDO_9.1安装配置"></a>TUXEDO_9.1安装配置</h1><h2 id="1、上传压缩包"><a href="#1、上传压缩包" class="headerlink" title="1、上传压缩包"></a>1、上传压缩包</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">上传Tuxedo-91.zip</span></span><br><span class="line"><span class="meta">#</span><span class="bash">包含以下文件</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">环境变量文件</span></span><br><span class="line">.bash_profile</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">license文件</span></span><br><span class="line">LIC-TX91-SDK-128_With-Jolt.txt</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">补丁包</span></span><br><span class="line">p17629052_91_Linux-x86-64.zip</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">安装操作文本版</span></span><br><span class="line">tixedo_install.txt</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">安装操作word版</span></span><br><span class="line">TUXEDO安装配置.docx</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">软件包</span></span><br><span class="line">tuxedo91_64_SLES_9_x86.bin</span><br></pre></td></tr></table></figure>
 
-    include includes/pagination.pug
-    if theme.related_post && theme.related_post.enable
-      != related_posts(page,site.posts)
-    if page.comments !== false
-      include includes/comments/index.pug
+
+
+<h2 id="2、创建tuxedo用户"><a href="#2、创建tuxedo用户" class="headerlink" title="2、创建tuxedo用户"></a>2、创建tuxedo用户</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">useradd -g oinstall -G dba,oper tuxedo</span><br><span class="line">echo 'tuxedo' | passwd --stdin tuxedo</span><br><span class="line">id tuxedo</span><br><span class="line"><span class="meta">#</span><span class="bash">uid=54322(tuxedo) gid=54321(oinstall) groups=54321(oinstall),54322(dba),54323(oper)</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="3、修改tuxedo环境变量"><a href="#3、修改tuxedo环境变量" class="headerlink" title="3、修改tuxedo环境变量"></a>3、修改tuxedo环境变量</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">查看oracle相关变量</span></span><br><span class="line">su - oracle </span><br><span class="line">env | grep oracle</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">su - tuxedo</span><br><span class="line"><span class="meta">#</span><span class="bash">添加环境变量</span></span><br><span class="line">vim ~/.bash_profile</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> .bash_profile</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Get the aliases and <span class="built_in">functions</span></span></span><br><span class="line">if [ -f ~/.bashrc ]; then</span><br><span class="line">	. ~/.bashrc</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> User specific environment and startup programs</span></span><br><span class="line"></span><br><span class="line">PATH=$PATH:$HOME/.local/bin:$HOME/bin</span><br><span class="line"><span class="meta">#</span><span class="bash">PATH=<span class="variable">$PATH</span>:<span class="variable">$HOME</span>/bin</span></span><br><span class="line">export PATH</span><br><span class="line"></span><br><span class="line">umask 023</span><br><span class="line">ORACLE_BASE=/u01/app/oracle</span><br><span class="line">ORACLE_HOME=$ORACLE_BASE/product/11.2.0.4/db</span><br><span class="line">ORACLE_SID=</span><br><span class="line">export ORACLE_BASE ORACLE_HOME ORACLE_SID PATH</span><br><span class="line">TUXDIR=/home/tuxedo/bea/tuxedo91; export TUXDIR</span><br><span class="line">JAVA_HOME=$TUXDIR/jre; export JAVA_HOME</span><br><span class="line">JVMLIBS=$JAVA_HOME/lib/i386/server:$JAVA_HOME/jre/bin; export JVMLIBS</span><br><span class="line">PATH=$TUXDIR/bin:$JAVA_HOME/bin:$ORACLE_HOME/bin:$PATH; export PATH</span><br><span class="line">COBCPY=:$TUXDIR/cobinclude; export COBCPY</span><br><span class="line">COBOPT="-CANS85-CALIGN=8-CNOIBMCOMP-CTRUNC=ANSI-COSEXT=cbl"; export COBOPT</span><br><span class="line">SHLIB_PATH=$TUXDIR/lib:$JVMLIBS:$SHLIB_PATH; export SHLIB_PATH</span><br><span class="line">LIBPATH=$TUXDIR/lib:$JVMLIBS:$LIBPATH; export LIBPATH</span><br><span class="line">LD_LIBRARY_PATH=$TUXDIR/lib:$JVMLIBS:$ORACLE_HOME/lib:$ORACLE_HOME/oracm/lib:/lib:/usr/lib:/usr/local/lib:$LD_LIBRARY_PATH; export LD_LIBRARY_PATH</span><br><span class="line">WEBJAVADIR=$TUXDIR/udataobj/webgui/java; export WEBJAVADIR</span><br><span class="line"></span><br><span class="line">export LANG=C</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">生效环境变量</span></span><br><span class="line">source ~/.bash_profile</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="4、解压安装包"><a href="#4、解压安装包" class="headerlink" title="4、解压安装包"></a>4、解压安装包</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">su - tuxedo</span><br><span class="line">mkdir /home/tuxedo/software</span><br><span class="line"></span><br><span class="line">cd software/</span><br><span class="line">unzip Tuxedo-91.zip</span><br><span class="line">unzip p17629052_91_Linux-x86-64.zip</span><br><span class="line">tar -zxvf RP171.tar.Z</span><br><span class="line">chmod +x+u tuxedo91_64_SLES_9_x86.bin</span><br><span class="line">ll</span><br><span class="line"></span><br><span class="line">mkdir -p /home/tuxedo/bea/tuxedo91</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="5、开始安装"><a href="#5、开始安装" class="headerlink" title="5、开始安装"></a>5、开始安装</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">命令行安装</span></span><br><span class="line">cd /home/tuxedo/software</span><br><span class="line">./tuxedo91_64_SLES_9_x86.bin -i console</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">Choose Locale</span></span><br><span class="line">缺省只能选择1- English回车</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">Introduction</span></span><br><span class="line">回车继续</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">DO YOU ACCEPT THE TERMS OF THIS LICENSE AGREEMENT? (Y/N): </span></span><br><span class="line">输入Y继续</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">Please choose the Install Set to be installed by this installer.</span></span><br><span class="line">选择安装类型</span><br><span class="line">选择1- Full Install（完全安装）</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">Choose BEA Home</span></span><br><span class="line">选择1- Create new BEA Home</span><br><span class="line">创建新的BEA目录</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">Specify a new BEA Home directory:</span></span><br><span class="line">输入BEA目录</span><br><span class="line">/home/tuxedo/bea/</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">Choose Product Directory</span></span><br><span class="line">选择1修改软件目录</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">Specify Product Installation Directory: </span></span><br><span class="line">输入软件目录</span><br><span class="line">/home/tuxedo/bea/tuxedo91</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">Specify Product Installation Directory: /home/tuxedo/bea/tuxedo91</span></span><br><span class="line">选择2</span><br><span class="line">使用新的目录</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">Pre-Installation Summary</span></span><br><span class="line">回车</span><br><span class="line">确认安装信息</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">Ready To Install</span></span><br><span class="line">回车开始安装</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">Installing...</span></span><br><span class="line">安装中，请等待</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">Configure tlisten Service</span></span><br><span class="line">两次输入密码</span><br><span class="line">tuxedo</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">Would you like to install SSL Support?</span></span><br><span class="line">不安装SSL</span><br><span class="line">输入2</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">Would you like to install your license now?</span></span><br><span class="line">添加license</span><br><span class="line">选择1</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">License Selection Option</span></span><br><span class="line">输入license目录</span><br><span class="line">/home/tuxedo/software/LIC-TX91-SDK-128_With-Jolt.txt</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">Installation Complete</span></span><br><span class="line">安装成功，回车退出</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="6、确认安装成功"><a href="#6、确认安装成功" class="headerlink" title="6、确认安装成功"></a>6、确认安装成功</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">cd ~/bea/tuxedo91/ </span><br><span class="line">chmod 755 tux.env</span><br><span class="line">env | grep TUX</span><br><span class="line"><span class="meta">#</span><span class="bash">TUXDIR=/home/tuxedo/bea/tuxedo91</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">查看版本</span></span><br><span class="line">tmadmin -v</span><br><span class="line"><span class="meta">#</span><span class="bash">INFO: BEA Tuxedo, Version 9.1, 64-bit, Patch Level (none)</span></span><br><span class="line"><span class="meta">#</span><span class="bash">INFO: Serial <span class="comment">#: 454493271161-2664953090480, Expiration NONE, Maxusers 1000000</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash">INFO: Licensed to: Customer</span></span><br><span class="line"><span class="meta">#</span><span class="bash">INFO: 128-bit Encryption Package</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="7、升级补丁"><a href="#7、升级补丁" class="headerlink" title="7、升级补丁"></a>7、升级补丁</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">cd ~/software/</span><br><span class="line"> ./install</span><br><span class="line"> </span><br><span class="line"><span class="meta">#</span><span class="bash">输入用户名</span></span><br><span class="line">tuxedo</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">输入所属组</span></span><br><span class="line">oinstall</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">\nThe patch installation finished successfully.</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">确认补丁安装成功</span></span><br><span class="line">tmadmin -v</span><br><span class="line"><span class="meta">#</span><span class="bash">INFO: BEA Tuxedo, Version 9.1, 64-bit, Patch Level 171</span></span><br><span class="line"><span class="meta">#</span><span class="bash">INFO: Serial <span class="comment">#: 454493271161-2664953090480, Expiration NONE, Maxusers 1000000</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash">INFO: Licensed to: Customer</span></span><br><span class="line"><span class="meta">#</span><span class="bash">INFO: 128-bit Encryption Package</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Linux-%E6%9C%8D%E5%8A%A1/Tuxedo/TUXEDO_9.1%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" data-id="ckcoibdf9000oo0uy4k0xcumq" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Oracle/%E5%AE%89%E8%A3%85%E6%96%87%E6%A1%A3/%E8%A1%A5%E4%B8%81%E5%AE%89%E8%A3%85/11G_R2-%E8%A1%A5%E4%B8%81%E5%8D%87%E7%BA%A7%EF%BC%88PSU_28729262%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          骚年-Markdown/Oracle/安装文档/补丁安装/11G_R2-补丁升级（PSU_28729262）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/07/16/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/%E7%91%9E%E9%80%9A-RHCE_8.0/2020%E5%B9%B47%E6%9C%885%E6%97%A5/">骚年-Markdown/瑞通-RHCE_8.0/2020年7月5日</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/%E7%91%9E%E9%80%9A-RHCE_8.0/2020%E5%B9%B46%E6%9C%8814%E6%97%A5/">骚年-Markdown/瑞通-RHCE_8.0/2020年6月14日</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/%E7%91%9E%E9%80%9A-RHCE_8.0/2020%E5%B9%B46%E6%9C%8813%E6%97%A5/">骚年-Markdown/瑞通-RHCE_8.0/2020年6月13日</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Windows/%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8F%91%E7%94%9F%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E9%94%99%E8%AF%AF%EF%BC%8C%E8%A6%81%E6%B1%82%E7%9A%84%E5%87%BD%E6%95%B0%E4%B8%8D%E5%8F%97%E6%94%AF%E6%8C%81/">骚年-Markdown/Windows/远程服务器发生身份验证错误，要求的函数不受支持</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Windows/%E8%AE%A1%E7%AE%97MD5%E4%B8%8ESHA1256%E5%80%BC/">骚年-Markdown/Windows/计算MD5与SHA1256值</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 SaoSao Nian<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

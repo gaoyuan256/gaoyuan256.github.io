@@ -1,25 +1,228 @@
-extends includes/layout.pug
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
 
-block content
-  article#post(class="")
-    #article-container.post-content!=page.content
-    include includes/post/post-copyright.pug
-    .tag_share
-      if (theme.post_meta.post.tags)
-        .post-meta__tag-list
-          each item, index in page.tags.data
-            a(href=url_for(item.path)).post-meta__tags #[=item.name]
-      !=partial('includes/share/index', {}, {cache:theme.fragment_cache})
+  
+  <title>骚年-Markdown/RHEL-8/RHEL_8.1-挂载镜像 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="RHEL_8.1-挂载镜像上传ISO到本地12345mkdir &#x2F;softwarell &#x2F;software&#x2F;total 7667712-rw-r--r--. 1 root root 7851737088 May 30 21:52 rhel-8.1-x86_64-dvd.iso    手动挂载12mkdir &#x2F;media&#x2F;cdrom -pmount -t iso9660 -o loop &#x2F;softw">
+<meta property="og:type" content="article">
+<meta property="og:title" content="骚年-Markdown&#x2F;RHEL-8&#x2F;RHEL_8.1-挂载镜像">
+<meta property="og:url" content="http://yoursite.com/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/RHEL-8/RHEL_8.1-%E6%8C%82%E8%BD%BD%E9%95%9C%E5%83%8F/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="RHEL_8.1-挂载镜像上传ISO到本地12345mkdir &#x2F;softwarell &#x2F;software&#x2F;total 7667712-rw-r--r--. 1 root root 7851737088 May 30 21:52 rhel-8.1-x86_64-dvd.iso    手动挂载12mkdir &#x2F;media&#x2F;cdrom -pmount -t iso9660 -o loop &#x2F;softw">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-16T06:01:00.214Z">
+<meta property="article:modified_time" content="2020-06-08T06:45:40.840Z">
+<meta property="article:author" content="SaoSao Nian">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
         
-    if theme.reward.enable
-      !=partial('includes/post/reward', {}, {cache:theme.fragment_cache})
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-骚年-Markdown/RHEL-8/RHEL_8.1-挂载镜像" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/RHEL-8/RHEL_8.1-%E6%8C%82%E8%BD%BD%E9%95%9C%E5%83%8F/" class="article-date">
+  <time datetime="2020-07-16T06:01:00.214Z" itemprop="datePublished">2020-07-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      骚年-Markdown/RHEL-8/RHEL_8.1-挂载镜像
+    </h1>
+  
 
-    //- ad
-    if theme.ad && theme.ad.post
-      .post-ad!=theme.ad.post
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="RHEL-8-1-挂载镜像"><a href="#RHEL-8-1-挂载镜像" class="headerlink" title="RHEL_8.1-挂载镜像"></a>RHEL_8.1-挂载镜像</h1><h2 id="上传ISO到本地"><a href="#上传ISO到本地" class="headerlink" title="上传ISO到本地"></a>上传ISO到本地</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir /software</span><br><span class="line"></span><br><span class="line">ll /software/</span><br><span class="line">total 7667712</span><br><span class="line">-rw-r--r--. 1 root root 7851737088 May 30 21:52 rhel-8.1-x86_64-dvd.iso</span><br></pre></td></tr></table></figure>
 
-    include includes/pagination.pug
-    if theme.related_post && theme.related_post.enable
-      != related_posts(page,site.posts)
-    if page.comments !== false
-      include includes/comments/index.pug
+
+
+<h2 id="手动挂载"><a href="#手动挂载" class="headerlink" title="手动挂载"></a>手动挂载</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir /media/cdrom -p</span><br><span class="line">mount -t iso9660 -o loop /software/rhel-8.1-x86_64-dvd.iso /media/cdrom</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="自动挂载"><a href="#自动挂载" class="headerlink" title="自动挂载"></a>自动挂载</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/fstab</span><br><span class="line">/software/rhel-8.1-x86_64-dvd.iso /media/cdrom iso9660 defaults,ro,loop 0 0 </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">然后再mount -a 挂载</span></span><br><span class="line"><span class="meta">#</span><span class="bash">但是或许会出现如下问题：</span></span><br><span class="line"></span><br><span class="line">cat /etc/fstab |grep iso</span><br><span class="line"><span class="meta">#</span><span class="bash">/root/rh401-pub.iso /mediaiso9660 defaults,ro,loop 0 0</span></span><br><span class="line"></span><br><span class="line">mount -a</span><br><span class="line"><span class="meta">#</span><span class="bash">mount: wrong fs <span class="built_in">type</span>, bad option, bad superblock on /dev/loop0,missing codepage or other error</span></span><br><span class="line"><span class="meta">#</span><span class="bash">In some cases useful info is found insyslog - try dmesg | tailor so</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">提示错误的文件系统类型，so，可能iso镜像文件并不是一般的iso9660格式的，如何查看呢？</span></span><br><span class="line"><span class="meta">#</span><span class="bash">1.手动挂载</span></span><br><span class="line"><span class="meta">#</span><span class="bash">2.查看系统类型 udf</span></span><br><span class="line">mount -o loop  /software/rhel-8.1-x86_64-dvd.iso  /media/cdrom</span><br><span class="line">df -T</span><br><span class="line"></span><br><span class="line">Filesystem    Type  1K-blocks      Used Available Use% Mounted on</span><br><span class="line">/dev/sda2    		ext3  135325776  55307840  73032876  44% /</span><br><span class="line">/dev/sda1    		ext3      194442    12027    172376  7% /boot</span><br><span class="line">tmpfs        		tmpfs    2998992        0  2998992  0% /dev/shm</span><br><span class="line">/root/rh401-pub.iso	udf    31957342  31957342        0 100% /media</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">在/etc/fstab中就知道怎么写了</span></span><br><span class="line">[root@desktop2 ~]# grep udf  /etc/fstab --color</span><br><span class="line">/root/rh401-pub.iso/mediaudfdefaults,ro,loop0 0</span><br><span class="line">[root@desktop2 ~]# mount -a</span><br><span class="line">[root@desktop2 ~]# mount |grep udf  --color</span><br><span class="line">/root/rh401-pub.iso on /media type udf (rw,loop=/dev/loop0)</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/RHEL-8/RHEL_8.1-%E6%8C%82%E8%BD%BD%E9%95%9C%E5%83%8F/" data-id="ckcoibde8000ao0uy23i9bnqz" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/RHEL-8/RHEL_8.1-%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          骚年-Markdown/RHEL-8/RHEL_8.1-网络配置
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/RHEL-8/RHEL_8.1-%E5%88%9D%E5%A7%8B%E5%8C%96%E6%B1%87%E6%80%BB/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">骚年-Markdown/RHEL-8/RHEL_8.1-初始化汇总</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/%E7%91%9E%E9%80%9A-RHCE_8.0/2020%E5%B9%B47%E6%9C%885%E6%97%A5/">骚年-Markdown/瑞通-RHCE_8.0/2020年7月5日</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/%E7%91%9E%E9%80%9A-RHCE_8.0/2020%E5%B9%B46%E6%9C%8814%E6%97%A5/">骚年-Markdown/瑞通-RHCE_8.0/2020年6月14日</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/%E7%91%9E%E9%80%9A-RHCE_8.0/2020%E5%B9%B46%E6%9C%8813%E6%97%A5/">骚年-Markdown/瑞通-RHCE_8.0/2020年6月13日</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Windows/%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8F%91%E7%94%9F%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E9%94%99%E8%AF%AF%EF%BC%8C%E8%A6%81%E6%B1%82%E7%9A%84%E5%87%BD%E6%95%B0%E4%B8%8D%E5%8F%97%E6%94%AF%E6%8C%81/">骚年-Markdown/Windows/远程服务器发生身份验证错误，要求的函数不受支持</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Windows/%E8%AE%A1%E7%AE%97MD5%E4%B8%8ESHA1256%E5%80%BC/">骚年-Markdown/Windows/计算MD5与SHA1256值</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 SaoSao Nian<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

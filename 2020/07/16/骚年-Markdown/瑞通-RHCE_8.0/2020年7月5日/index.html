@@ -1,25 +1,265 @@
-extends includes/layout.pug
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
 
-block content
-  article#post(class="")
-    #article-container.post-content!=page.content
-    include includes/post/post-copyright.pug
-    .tag_share
-      if (theme.post_meta.post.tags)
-        .post-meta__tag-list
-          each item, index in page.tags.data
-            a(href=url_for(item.path)).post-meta__tags #[=item.name]
-      !=partial('includes/share/index', {}, {cache:theme.fragment_cache})
+  
+  <title>骚年-Markdown/瑞通-RHCE_8.0/2020年7月5日 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="归档及文件压缩dfdf -i  查看inode号 tartar cvf dir1 dir1.tar -c 创建一个新存档 -x 从现有存档提取 -t 列出存档目录 -v 详细信息  -f 指定创建的文件名 -p 保留文件和目录的权限，而不去除umask 同名文件自动覆盖，不会询问 tar -tf dir1.tar 列出压缩包内容 tar rf &#x2F;etc&#x2F;passwd dir1.tar 添加文件到已">
+<meta property="og:type" content="article">
+<meta property="og:title" content="骚年-Markdown&#x2F;瑞通-RHCE_8.0&#x2F;2020年7月5日">
+<meta property="og:url" content="http://yoursite.com/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/%E7%91%9E%E9%80%9A-RHCE_8.0/2020%E5%B9%B47%E6%9C%885%E6%97%A5/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="归档及文件压缩dfdf -i  查看inode号 tartar cvf dir1 dir1.tar -c 创建一个新存档 -x 从现有存档提取 -t 列出存档目录 -v 详细信息  -f 指定创建的文件名 -p 保留文件和目录的权限，而不去除umask 同名文件自动覆盖，不会询问 tar -tf dir1.tar 列出压缩包内容 tar rf &#x2F;etc&#x2F;passwd dir1.tar 添加文件到已">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-16T06:01:06.308Z">
+<meta property="article:modified_time" content="2020-07-05T08:21:54.010Z">
+<meta property="article:author" content="SaoSao Nian">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
         
-    if theme.reward.enable
-      !=partial('includes/post/reward', {}, {cache:theme.fragment_cache})
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-骚年-Markdown/瑞通-RHCE_8.0/2020年7月5日" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/%E7%91%9E%E9%80%9A-RHCE_8.0/2020%E5%B9%B47%E6%9C%885%E6%97%A5/" class="article-date">
+  <time datetime="2020-07-16T06:01:06.308Z" itemprop="datePublished">2020-07-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      骚年-Markdown/瑞通-RHCE_8.0/2020年7月5日
+    </h1>
+  
 
-    //- ad
-    if theme.ad && theme.ad.post
-      .post-ad!=theme.ad.post
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="归档及文件压缩"><a href="#归档及文件压缩" class="headerlink" title="归档及文件压缩"></a>归档及文件压缩</h1><h2 id="df"><a href="#df" class="headerlink" title="df"></a>df</h2><p>df -i </p>
+<p>查看inode号</p>
+<h2 id="tar"><a href="#tar" class="headerlink" title="tar"></a>tar</h2><p>tar cvf dir1 dir1.tar</p>
+<p>-c 创建一个新存档</p>
+<p>-x 从现有存档提取</p>
+<p>-t 列出存档目录</p>
+<p>-v 详细信息 </p>
+<p>-f 指定创建的文件名</p>
+<p>-p 保留文件和目录的权限，而不去除umask</p>
+<p>同名文件自动覆盖，不会询问</p>
+<p>tar -tf dir1.tar</p>
+<p>列出压缩包内容</p>
+<p>tar rf /etc/passwd dir1.tar</p>
+<p>添加文件到已有压缩包</p>
+<p>tar xf dir1.tar</p>
+<p>解压压缩包</p>
+<p>tar xf dir1.tar -C /tmp</p>
+<p>指定目录解压</p>
+<p>三种压缩方式</p>
+<p>gzip    –选项（z）tar czvf dir1 dir1.tar.gz</p>
+<p>bzip2    –选项（j）tar cjvf dir1 dir1.tar.bz2</p>
+<p>xz    –选项（J）tar cJvf dir1 dir1.tar.xz</p>
+<h2 id="rsync"><a href="#rsync" class="headerlink" title="rsync"></a>rsync</h2><p>rsync -av /etc /home</p>
+<h2 id="YUM"><a href="#YUM" class="headerlink" title="YUM"></a>YUM</h2><p>yum clean all; yum makecache; yum repolist all</p>
+<h2 id="service"><a href="#service" class="headerlink" title="service"></a>service</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/services</span><br><span class="line"></span><br><span class="line">tcpmux          1/tcp                           # TCP port service multiplexer</span><br><span class="line">tcpmux          1/udp                           # TCP port service multiplexer</span><br><span class="line">rje             5/tcp                           # Remote Job Entry</span><br><span class="line">rje             5/udp                           # Remote Job Entry</span><br><span class="line">echo            7/tcp</span><br><span class="line">echo            7/udp</span><br><span class="line">discard         9/tcp           sink null</span><br><span class="line">discard         9/udp           sink null</span><br><span class="line">systat          11/tcp          users</span><br><span class="line">systat          11/udp          users</span><br></pre></td></tr></table></figure>
 
-    include includes/pagination.pug
-    if theme.related_post && theme.related_post.enable
-      != related_posts(page,site.posts)
-    if page.comments !== false
-      include includes/comments/index.pug
+
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@foundation0 ~]# cat  /etc/services |grep " 80/"</span><br><span class="line">http            80/tcp          www www-http    # WorldWideWeb HTTP</span><br><span class="line">http            80/udp          www www-http    # HyperText Transfer Protocol</span><br><span class="line">http            80/sctp                         # HyperText Transfer Protocol</span><br><span class="line"></span><br><span class="line">[root@foundation0 ~]# cat  /etc/services |grep " 22/"</span><br><span class="line">ssh             22/tcp                          # The Secure Shell (SSH) Protocol</span><br><span class="line">ssh             22/udp                          # The Secure Shell (SSH) Protocol</span><br><span class="line">ssh             22/sctp                 # SSH</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">ss -ta</span><br><span class="line"></span><br><span class="line">State                 Recv-Q                 Send-Q                                          Local Address:Port                                                     Peer Address:Port                  </span><br><span class="line">LISTEN                0                      32                                              192.168.122.1:domain                                                        0.0.0.0:*                     </span><br><span class="line">LISTEN                0                      32                                             172.25.250.250:domain                                                        0.0.0.0:*                     </span><br><span class="line">LISTEN                0                      32                                              192.168.123.1:domain                                                        0.0.0.0:*                     </span><br><span class="line">LISTEN                0                      10                                             172.25.254.250:domain                                                        0.0.0.0:*                     </span><br><span class="line">LISTEN                0                      10                                                  127.0.0.1:domain                                                        0.0.0.0:*                     </span><br><span class="line">LISTEN                0                      128                                                   0.0.0.0:ssh                                                           0.0.0.0:*                     </span><br><span class="line">LISTEN                0                      128                                                 127.0.0.1:rndc                                                          0.0.0.0:*                     </span><br><span class="line">LISTEN                0                      128                                                 127.0.0.1:x11-ssh-offset                                                0.0.0.0:*                     </span><br><span class="line">LISTEN                0                      128                                                 127.0.0.1:6011                                                          0.0.0.0:*     </span><br><span class="line"></span><br><span class="line">ss -l 显示本地打开的所有端口</span><br><span class="line">ss -pl 显示每个进程具体打开的socket</span><br><span class="line">ss -t -a 显示所有tcp socket</span><br><span class="line">ss -u -a 显示所有的UDP Socekt</span><br><span class="line">ss -o state established '( dport = :smtp or sport = :smtp )' 显示所有已建立的SMTP连接</span><br><span class="line">ss -o state established '( dport = :http or sport = :http )' 显示所有已建立的HTTP连接</span><br><span class="line">ss -x src /tmp/.X11-unix/* 找出所有连接X服务器的进程</span><br><span class="line">ss -s 列出当前socket详细信息</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ip ro sh</span><br><span class="line">default via 192.168.13.2 dev ens256 proto dhcp metric 100 </span><br><span class="line">default via 10.10.10.254 dev ens161 proto static metric 102 </span><br><span class="line">10.0.0.0/8 dev ens161 proto kernel scope link src 10.10.10.14 metric 102 </span><br><span class="line">172.25.0.0/24 dev br0 proto kernel scope link src 172.25.0.250 metric 425 </span><br><span class="line">172.25.0.0/16 via 172.25.254.254 dev br0 proto static metric 425 </span><br><span class="line">172.25.250.0/24 dev privbr0 proto kernel scope link src 172.25.250.250 </span><br><span class="line">172.25.254.0/24 dev br0 proto kernel scope link src 172.25.254.250 metric 425 </span><br><span class="line">192.168.13.0/24 dev ens256 proto kernel scope link src 192.168.13.128 metric 100 </span><br><span class="line">192.168.122.0/24 dev virbr0 proto kernel scope link src 192.168.122.1 linkdown </span><br><span class="line">192.168.123.0/24 dev br1 proto kernel scope link src 192.168.123.1</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# netstat -ntlp   //查看当前所有tcp端口·</span><br><span class="line">[root@localhost ~]# netstat -ntulp |grep 80   //查看所有80端口使用情况·</span><br><span class="line">[root@localhost ~]# netstat -an | grep 3306   //查看所有3306端口使用情况·</span><br><span class="line">[root@localhost ~]# netstat -nlp |grep LISTEN   //查看当前所有监听端口·</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="nmcli"><a href="#nmcli" class="headerlink" title="nmcli"></a>nmcli</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">[root@foundation0 ~]# nmcli dev status </span><br><span class="line">DEVICE       TYPE      STATE      CONNECTION         </span><br><span class="line">ens256       ethernet  connected  ens256             </span><br><span class="line">br0          bridge    connected  Bridge br0         </span><br><span class="line">ens161       ethernet  connected  Wired connection 1 </span><br><span class="line">br1          bridge    connected  br1                </span><br><span class="line">privbr0      bridge    connected  privbr0            </span><br><span class="line">virbr0       bridge    connected  virbr0             </span><br><span class="line">virbr1       bridge    connected  virbr1             </span><br><span class="line">ens160       ethernet  connected  System ens160      </span><br><span class="line">vnet0        tun       connected  vnet0              </span><br><span class="line">vnet1        tun       connected  vnet1              </span><br><span class="line">vnet2        tun       connected  vnet2              </span><br><span class="line">vnet3        tun       connected  vnet3              </span><br><span class="line">lo           loopback  unmanaged  --                 </span><br><span class="line">br1-nic      tun       unmanaged  --                 </span><br><span class="line">privbr0-nic  tun       unmanaged  --                 </span><br><span class="line">virbr0-nic   tun       unmanaged  --                 </span><br><span class="line">virbr1-nic   tun       unmanaged  --</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">nmcli -p</span><br><span class="line"><span class="meta">#</span><span class="bash">查看所有设备</span></span><br><span class="line">nmcli dev show</span><br><span class="line"><span class="meta">#</span><span class="bash">查看所有连接</span></span><br><span class="line">nmcli con show</span><br><span class="line">nmcli con show --active </span><br><span class="line">nmcli con show "ens256"</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">命令行</span></span><br><span class="line">nmcli</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">半图形化</span></span><br><span class="line">nmtui</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">图形化</span></span><br><span class="line">nm-connection-editor</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/%E7%91%9E%E9%80%9A-RHCE_8.0/2020%E5%B9%B47%E6%9C%885%E6%97%A5/" data-id="ckcoibdem000lo0uy7eel12tb" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/%E7%91%9E%E9%80%9A-RHCE_8.0/2020%E5%B9%B46%E6%9C%8814%E6%97%A5/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">骚年-Markdown/瑞通-RHCE_8.0/2020年6月14日</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/%E7%91%9E%E9%80%9A-RHCE_8.0/2020%E5%B9%B47%E6%9C%885%E6%97%A5/">骚年-Markdown/瑞通-RHCE_8.0/2020年7月5日</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/%E7%91%9E%E9%80%9A-RHCE_8.0/2020%E5%B9%B46%E6%9C%8814%E6%97%A5/">骚年-Markdown/瑞通-RHCE_8.0/2020年6月14日</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/%E7%91%9E%E9%80%9A-RHCE_8.0/2020%E5%B9%B46%E6%9C%8813%E6%97%A5/">骚年-Markdown/瑞通-RHCE_8.0/2020年6月13日</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Windows/%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8F%91%E7%94%9F%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E9%94%99%E8%AF%AF%EF%BC%8C%E8%A6%81%E6%B1%82%E7%9A%84%E5%87%BD%E6%95%B0%E4%B8%8D%E5%8F%97%E6%94%AF%E6%8C%81/">骚年-Markdown/Windows/远程服务器发生身份验证错误，要求的函数不受支持</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Windows/%E8%AE%A1%E7%AE%97MD5%E4%B8%8ESHA1256%E5%80%BC/">骚年-Markdown/Windows/计算MD5与SHA1256值</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 SaoSao Nian<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

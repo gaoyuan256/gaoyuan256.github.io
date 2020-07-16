@@ -1,25 +1,236 @@
-extends includes/layout.pug
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
 
-block content
-  article#post(class="")
-    #article-container.post-content!=page.content
-    include includes/post/post-copyright.pug
-    .tag_share
-      if (theme.post_meta.post.tags)
-        .post-meta__tag-list
-          each item, index in page.tags.data
-            a(href=url_for(item.path)).post-meta__tags #[=item.name]
-      !=partial('includes/share/index', {}, {cache:theme.fragment_cache})
+  
+  <title>骚年-Markdown/Oracle/安装文档/补丁安装/补丁升级 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1、 补丁升级1234567su - oraclecd &#x2F;software&#x2F;unzip p6880880_112000_Linux-x86-64.zipunzip p28729262_112040_Linux-x86-64\(PSU\).zip    2、确定当前安装的临时补丁是否与正在安装的补丁冲突12345678910111213cd &#x2F;software&#x2F;28729262&#x2F;software&#x2F;O">
+<meta property="og:type" content="article">
+<meta property="og:title" content="骚年-Markdown&#x2F;Oracle&#x2F;安装文档&#x2F;补丁安装&#x2F;补丁升级">
+<meta property="og:url" content="http://yoursite.com/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Oracle/%E5%AE%89%E8%A3%85%E6%96%87%E6%A1%A3/%E8%A1%A5%E4%B8%81%E5%AE%89%E8%A3%85/%E8%A1%A5%E4%B8%81%E5%8D%87%E7%BA%A7/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1、 补丁升级1234567su - oraclecd &#x2F;software&#x2F;unzip p6880880_112000_Linux-x86-64.zipunzip p28729262_112040_Linux-x86-64\(PSU\).zip    2、确定当前安装的临时补丁是否与正在安装的补丁冲突12345678910111213cd &#x2F;software&#x2F;28729262&#x2F;software&#x2F;O">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-16T06:00:44.636Z">
+<meta property="article:modified_time" content="2020-06-10T06:22:55.047Z">
+<meta property="article:author" content="SaoSao Nian">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
         
-    if theme.reward.enable
-      !=partial('includes/post/reward', {}, {cache:theme.fragment_cache})
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-骚年-Markdown/Oracle/安装文档/补丁安装/补丁升级" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Oracle/%E5%AE%89%E8%A3%85%E6%96%87%E6%A1%A3/%E8%A1%A5%E4%B8%81%E5%AE%89%E8%A3%85/%E8%A1%A5%E4%B8%81%E5%8D%87%E7%BA%A7/" class="article-date">
+  <time datetime="2020-07-16T06:00:44.636Z" itemprop="datePublished">2020-07-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      骚年-Markdown/Oracle/安装文档/补丁安装/补丁升级
+    </h1>
+  
 
-    //- ad
-    if theme.ad && theme.ad.post
-      .post-ad!=theme.ad.post
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1、-补丁升级"><a href="#1、-补丁升级" class="headerlink" title="1、 补丁升级"></a>1、 补丁升级</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">su - oracle</span><br><span class="line"></span><br><span class="line">cd /software/</span><br><span class="line"></span><br><span class="line">unzip p6880880_112000_Linux-x86-64.zip</span><br><span class="line"></span><br><span class="line">unzip p28729262_112040_Linux-x86-64\(PSU\).zip</span><br></pre></td></tr></table></figure>
 
-    include includes/pagination.pug
-    if theme.related_post && theme.related_post.enable
-      != related_posts(page,site.posts)
-    if page.comments !== false
-      include includes/comments/index.pug
+
+
+<h2 id="2、确定当前安装的临时补丁是否与正在安装的补丁冲突"><a href="#2、确定当前安装的临时补丁是否与正在安装的补丁冲突" class="headerlink" title="2、确定当前安装的临时补丁是否与正在安装的补丁冲突"></a>2、确定当前安装的临时补丁是否与正在安装的补丁冲突</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">cd /software/28729262</span><br><span class="line"></span><br><span class="line">/software/OPatch/opatch prereq CheckConflictAgainstOHWithDetail -ph ./</span><br><span class="line"></span><br><span class="line">/software/OPatch/opatch apply /software/28729262/</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">Do you want to proceed? [y|n]   y</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">Do you wish to remain uninformed of security issues ([Y]es, [N]o) [N]:  y</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">Email address/User Name:  回车</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">Is the <span class="built_in">local</span> system ready <span class="keyword">for</span> patching? [y|n]    y</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="3、查看版本"><a href="#3、查看版本" class="headerlink" title="3、查看版本"></a>3、查看版本</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/software/OPatch/opatch lspatches</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="4、配置基线"><a href="#4、配置基线" class="headerlink" title="4、配置基线"></a>4、配置基线</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--安全补丁</span></span><br><span class="line"></span><br><span class="line">SQL &gt;!opatch lsinventory</span><br><span class="line"></span><br><span class="line"><span class="comment">--补丁版本</span></span><br><span class="line"></span><br><span class="line">SQL &gt; set line 400</span><br><span class="line"></span><br><span class="line">SQL &gt; col action_time for a35</span><br><span class="line"></span><br><span class="line">SQL &gt; col comments for a50</span><br><span class="line"></span><br><span class="line">SQL &gt; alter session set nls_date_format = 'yyyy-mm-dd hh24:mi:ss';</span><br><span class="line"></span><br><span class="line">SQL &gt; select action_time,id,comments from dba_registry_history;</span><br><span class="line"></span><br><span class="line">ACTION_TIME                 ID COMMENTS</span><br><span class="line"></span><br><span class="line"><span class="comment">----------------------------------- ---------- -------------------</span></span><br><span class="line"></span><br><span class="line">24-AUG-13 12.03.45.119862 PM        0 Patchset 11.2.0.2.0</span><br><span class="line"></span><br><span class="line">25-APR-20 06.48.45.011288 PM      190115 PSU 11.2.0.4.190115</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="5、补丁升级后续部署"><a href="#5、补丁升级后续部署" class="headerlink" title="5、补丁升级后续部署"></a>5、补丁升级后续部署</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--对于正在修补的Oracle home上运行的每个数据库实例，使用SQL*Plus连接到数据库。连接为SYSDBA，确保无效对象设置为0，如果无效对象非0，则使用utlr .sql。然后运行catbundle。sql脚本如下:</span></span><br><span class="line"></span><br><span class="line">cd $ORACLE_HOME/rdbms/admin</span><br><span class="line"></span><br><span class="line">sqlplus / as sysdba</span><br><span class="line"></span><br><span class="line">SQL &gt; @catbundle.sql psu apply</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">--如果OJVM PSU应用于以前的PSU补丁，那么在执行catbundle之后，您可能会看到无效的Java类。前一步中的sql脚本。如果是这种情况，运行utlrp。sql来重新验证这些Java类。</span></span><br><span class="line"></span><br><span class="line">SQL &gt; @utlrp.sql</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Oracle/%E5%AE%89%E8%A3%85%E6%96%87%E6%A1%A3/%E8%A1%A5%E4%B8%81%E5%AE%89%E8%A3%85/%E8%A1%A5%E4%B8%81%E5%8D%87%E7%BA%A7/" data-id="ckcoibdhe001ko0uy9pej5tv6" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Oracle/%E5%AE%89%E8%A3%85%E6%96%87%E6%A1%A3/%E9%9D%99%E9%BB%98%E5%AE%89%E8%A3%85/silent-11G-oracle-20200609/silent-11G-oracle/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          骚年-Markdown/Oracle/安装文档/静默安装/silent-11G-oracle-20200609/silent-11G-oracle
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Oracle/%E5%AE%89%E8%A3%85%E6%96%87%E6%A1%A3/%E8%A1%A5%E4%B8%81%E5%AE%89%E8%A3%85/11G_R2-%E8%A1%A5%E4%B8%81%E5%8D%87%E7%BA%A7%EF%BC%88PSU_28729262%EF%BC%89/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">骚年-Markdown/Oracle/安装文档/补丁安装/11G_R2-补丁升级（PSU_28729262）</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/%E7%91%9E%E9%80%9A-RHCE_8.0/2020%E5%B9%B47%E6%9C%885%E6%97%A5/">骚年-Markdown/瑞通-RHCE_8.0/2020年7月5日</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/%E7%91%9E%E9%80%9A-RHCE_8.0/2020%E5%B9%B46%E6%9C%8814%E6%97%A5/">骚年-Markdown/瑞通-RHCE_8.0/2020年6月14日</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/%E7%91%9E%E9%80%9A-RHCE_8.0/2020%E5%B9%B46%E6%9C%8813%E6%97%A5/">骚年-Markdown/瑞通-RHCE_8.0/2020年6月13日</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Windows/%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8F%91%E7%94%9F%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E9%94%99%E8%AF%AF%EF%BC%8C%E8%A6%81%E6%B1%82%E7%9A%84%E5%87%BD%E6%95%B0%E4%B8%8D%E5%8F%97%E6%94%AF%E6%8C%81/">骚年-Markdown/Windows/远程服务器发生身份验证错误，要求的函数不受支持</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Windows/%E8%AE%A1%E7%AE%97MD5%E4%B8%8ESHA1256%E5%80%BC/">骚年-Markdown/Windows/计算MD5与SHA1256值</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 SaoSao Nian<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

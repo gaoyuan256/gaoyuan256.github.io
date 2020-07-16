@@ -1,25 +1,312 @@
-extends includes/layout.pug
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
 
-block content
-  article#post(class="")
-    #article-container.post-content!=page.content
-    include includes/post/post-copyright.pug
-    .tag_share
-      if (theme.post_meta.post.tags)
-        .post-meta__tag-list
-          each item, index in page.tags.data
-            a(href=url_for(item.path)).post-meta__tags #[=item.name]
-      !=partial('includes/share/index', {}, {cache:theme.fragment_cache})
+  
+  <title>骚年-Markdown/RHEL-8/RHEL_8.1-网络配置 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="RHEL8和CentOS8怎么重启网络序： 本文主要讲解如何重启RHEL 8或者CentOS 8网络以及如何解决RHEL8和CentOS8系统的网络管理服务报错，当我们安装好RHEL 8或者 CentOS 8，重启启动网络时，会出现以下报错：  历史命令失效1systemctl restart network.service  报错信息如下 Failed to restart network.se">
+<meta property="og:type" content="article">
+<meta property="og:title" content="骚年-Markdown&#x2F;RHEL-8&#x2F;RHEL_8.1-网络配置">
+<meta property="og:url" content="http://yoursite.com/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/RHEL-8/RHEL_8.1-%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="RHEL8和CentOS8怎么重启网络序： 本文主要讲解如何重启RHEL 8或者CentOS 8网络以及如何解决RHEL8和CentOS8系统的网络管理服务报错，当我们安装好RHEL 8或者 CentOS 8，重启启动网络时，会出现以下报错：  历史命令失效1systemctl restart network.service  报错信息如下 Failed to restart network.se">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-16T06:01:00.245Z">
+<meta property="article:modified_time" content="2020-06-08T06:37:40.504Z">
+<meta property="article:author" content="SaoSao Nian">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
         
-    if theme.reward.enable
-      !=partial('includes/post/reward', {}, {cache:theme.fragment_cache})
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-骚年-Markdown/RHEL-8/RHEL_8.1-网络配置" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/RHEL-8/RHEL_8.1-%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/" class="article-date">
+  <time datetime="2020-07-16T06:01:00.245Z" itemprop="datePublished">2020-07-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      骚年-Markdown/RHEL-8/RHEL_8.1-网络配置
+    </h1>
+  
 
-    //- ad
-    if theme.ad && theme.ad.post
-      .post-ad!=theme.ad.post
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="RHEL8和CentOS8怎么重启网络"><a href="#RHEL8和CentOS8怎么重启网络" class="headerlink" title="RHEL8和CentOS8怎么重启网络"></a>RHEL8和CentOS8怎么重启网络</h1><h2 id="序："><a href="#序：" class="headerlink" title="序："></a>序：</h2><blockquote>
+<p>本文主要讲解如何重启RHEL 8或者CentOS 8网络以及如何解决RHEL8和CentOS8系统的网络管理服务报错，当我们安装好RHEL 8或者 CentOS 8，重启启动网络时，会出现以下报错：</p>
+</blockquote>
+<h2 id="历史命令失效"><a href="#历史命令失效" class="headerlink" title="历史命令失效"></a>历史命令失效</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart network.service</span><br></pre></td></tr></table></figure>
 
-    include includes/pagination.pug
-    if theme.related_post && theme.related_post.enable
-      != related_posts(page,site.posts)
-    if page.comments !== false
-      include includes/comments/index.pug
+<p>报错信息如下</p>
+<p>Failed to restart network.service: Unit network.service not found.<br>意思为无法重启网络服务，原因是无法找到network.service网络服务。</p>
+<p>出现错误的原因是在RHEL 8和CentOS 8系统里，已废弃network.service。因此只能通过其它方法进行网络配置，包括NM命令工具集。换言之，在rhel8上，必须开启NM，否则无法使用网络。</p>
+<h2 id="RHEL8新配置命令"><a href="#RHEL8新配置命令" class="headerlink" title="RHEL8新配置命令"></a>RHEL8新配置命令</h2><p>下文假设你的网卡标识为xxx，可以通过以下命令确定网卡标识符</p>
+<p>ip addr</p>
+<p>比如ens33等等这类标识。</p>
+<ol>
+<li>RHEL8或者CentOS8配置网络的三种方法<br>RHEL8或者CentOS8应该使用nmcli管理网络</li>
+</ol>
+<p>手工配置ifcfg，通过NM来生效<br>通过NM自带工具配ip，比如nmcli<br>手工配置ifcfg，通过传统network.service来生效<br>建议：推荐使用上述第1种网络配置方法（手工配置ifcfg，通过NM生效），因为这样既兼容了传统的ifcfg配置，又能熟悉nmcli。举例：</p>
+<h3 id="方法一：手工配置ifcfg，使用nmcli来生效新的网络配置"><a href="#方法一：手工配置ifcfg，使用nmcli来生效新的网络配置" class="headerlink" title="方法一：手工配置ifcfg，使用nmcli来生效新的网络配置"></a>方法一：手工配置ifcfg，使用nmcli来生效新的网络配置</h3><p>假设网卡标识符为xxx</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/sysconfig/network-scripts/ifcfg-xxx</span><br></pre></td></tr></table></figure>
+
+<p>使用nmcli重新回载网络配置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmcli c reload</span><br></pre></td></tr></table></figure>
+
+<p>如果之前没有xxx的connection，则上一步reload后就已经自动生效了</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmcli c up xxx</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="方法二：RHEL8和CentOS8完全使用nmcli来管理网络"><a href="#方法二：RHEL8和CentOS8完全使用nmcli来管理网络" class="headerlink" title="方法二：RHEL8和CentOS8完全使用nmcli来管理网络"></a>方法二：RHEL8和CentOS8完全使用nmcli来管理网络</h3><p>查看网卡信息</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmcli connection</span><br></pre></td></tr></table></figure>
+
+<p>NAME            UUID                                                                      TYPE            DEVICE<br>ens192      03da7500-2101-c722-2438-d0d006c28c73      ethernet        ens192<br>ens224      97119fc0-0fe6-4e02-afed-dce12d49d300        ethernet        ens224<br>virbr0        8f70510c-f3ed-4aba-828c-858262ac1506        bridge             virbr0</p>
+<p>显示具体的网络接口信息</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmcli connection show xxx</span><br></pre></td></tr></table></figure>
+
+<p>显示所有活动连接</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmcli connection show --active</span><br></pre></td></tr></table></figure>
+
+<p>删除一个网卡连接</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmcli connection delete xxx</span><br></pre></td></tr></table></figure>
+
+<p>给xxx添加一个IP（IPADDR）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmcli connection modify xxx ipv4.addresses 192.168.0.58</span><br></pre></td></tr></table></figure>
+
+<p>给xxx添加一个子网掩码（NETMASK）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmcli connection modify xxx ipv4.addresses 192.168.0.58/24</span><br></pre></td></tr></table></figure>
+
+<p>IP获取方式设置成手动（BOOTPROTO=static/none）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmcli connection modify xxx ipv4.method manual</span><br></pre></td></tr></table></figure>
+
+<p>添加一个ipv4</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmcli connection modify xxx +ipv4.addresses 192.168.0.59/24</span><br></pre></td></tr></table></figure>
+
+<p>删除一个ipv4</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmcli connection modify xxx -ipv4.addresses 192.168.0.59/24</span><br></pre></td></tr></table></figure>
+
+<p>添加DNS</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmcli connection modify xxx ipv4.dns 114.114.114.114</span><br></pre></td></tr></table></figure>
+
+<p>删除DNS</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmcli connection modify xxx -ipv4.dns 114.114.114.114</span><br></pre></td></tr></table></figure>
+
+<p>添加一个网关（GATEWAY）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmcli connection modify xxx ipv4.gateway 192.168.0.2</span><br></pre></td></tr></table></figure>
+
+<p>可一块写入：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmcli connection modify xxx ipv4.dns 114.114.114.114 ipv4.gateway 192.168.0.2</span><br></pre></td></tr></table></figure>
+
+<p>添加DNS</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmcli connection modify xxx ipv4.dns 114.114.114.114</span><br></pre></td></tr></table></figure>
+
+<p>删除DNS</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmcli connection modify xxx -ipv4.dns 114.114.114.114</span><br></pre></td></tr></table></figure>
+
+<p>添加一个网关（GATEWAY）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmcli connection modify xxx ipv4.gateway 192.168.0.2</span><br></pre></td></tr></table></figure>
+
+<p>可一块写入：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmcli connection modify xxx ipv4.dns 114.114.114.114 ipv4.gateway 192.168.0.2</span><br></pre></td></tr></table></figure>
+
+<p>使用nmcli重新回载网络配置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmcli c reload</span><br></pre></td></tr></table></figure>
+
+<p>如果之前没有xxx的connection，则上一步reload后就已经自动生效了</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmcli c up xxx</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="方法三：安装network-service服务"><a href="#方法三：安装network-service服务" class="headerlink" title="方法三：安装network.service服务"></a>方法三：安装network.service服务</h3><blockquote>
+<p>可以通过yum install network-scripts来安装传统的network.service，不过redhat说了，在下一个RHEL的大版本里将彻底废除，因此不建议使用network.service。</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y network-scripts</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>CentOS8和RHEL8上一定要习惯使用nmcli来管理网络，network.service在未来会被正式废除，没有学习的必要了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/RHEL-8/RHEL_8.1-%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/" data-id="ckcoibdea000bo0uy6bhu0zkn" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/RHEL-8/RHEL_8.1-%E9%85%8D%E7%BD%AEyum%E3%80%81dnf%E6%BA%90/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          骚年-Markdown/RHEL-8/RHEL_8.1-配置yum、dnf源
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/RHEL-8/RHEL_8.1-%E6%8C%82%E8%BD%BD%E9%95%9C%E5%83%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">骚年-Markdown/RHEL-8/RHEL_8.1-挂载镜像</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/%E7%91%9E%E9%80%9A-RHCE_8.0/2020%E5%B9%B47%E6%9C%885%E6%97%A5/">骚年-Markdown/瑞通-RHCE_8.0/2020年7月5日</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/%E7%91%9E%E9%80%9A-RHCE_8.0/2020%E5%B9%B46%E6%9C%8814%E6%97%A5/">骚年-Markdown/瑞通-RHCE_8.0/2020年6月14日</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/%E7%91%9E%E9%80%9A-RHCE_8.0/2020%E5%B9%B46%E6%9C%8813%E6%97%A5/">骚年-Markdown/瑞通-RHCE_8.0/2020年6月13日</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Windows/%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8F%91%E7%94%9F%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E9%94%99%E8%AF%AF%EF%BC%8C%E8%A6%81%E6%B1%82%E7%9A%84%E5%87%BD%E6%95%B0%E4%B8%8D%E5%8F%97%E6%94%AF%E6%8C%81/">骚年-Markdown/Windows/远程服务器发生身份验证错误，要求的函数不受支持</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Windows/%E8%AE%A1%E7%AE%97MD5%E4%B8%8ESHA1256%E5%80%BC/">骚年-Markdown/Windows/计算MD5与SHA1256值</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 SaoSao Nian<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
