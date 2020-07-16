@@ -1,227 +1,25 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
+extends includes/layout.pug
 
-  
-  <title>骚年-Markdown/Windows/Win10 4k高分屏下远程桌面分辨率问题 | Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="因为现在使用的是工作站笔记本是4K分辨率的屏幕，使用Win10自带的远程桌面时由于两遍分辨率不同，导致远程方的屏幕分辨率过高，导致需要带放大镜才能看得清，影响体验。 这边有3种方法解决这个问题： 方法一（网上找的方法）：1、修改注册表：用运行-regedit编辑注册表，找到： HKEY_LOCAL_MACHINE &gt; SOFTWARE &gt; Microsoft &gt; Windows">
-<meta property="og:type" content="article">
-<meta property="og:title" content="骚年-Markdown&#x2F;Windows&#x2F;Win10 4k高分屏下远程桌面分辨率问题">
-<meta property="og:url" content="http://yoursite.com/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Windows/Win10%204k%E9%AB%98%E5%88%86%E5%B1%8F%E4%B8%8B%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E5%88%86%E8%BE%A8%E7%8E%87%E9%97%AE%E9%A2%98/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="因为现在使用的是工作站笔记本是4K分辨率的屏幕，使用Win10自带的远程桌面时由于两遍分辨率不同，导致远程方的屏幕分辨率过高，导致需要带放大镜才能看得清，影响体验。 这边有3种方法解决这个问题： 方法一（网上找的方法）：1、修改注册表：用运行-regedit编辑注册表，找到： HKEY_LOCAL_MACHINE &gt; SOFTWARE &gt; Microsoft &gt; Windows">
-<meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-07-16T06:01:00.386Z">
-<meta property="article:modified_time" content="2020-07-03T05:08:17.082Z">
-<meta property="article:author" content="SaoSao Nian">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  
-<link rel="stylesheet" href="/css/style.css">
-
-<meta name="generator" content="Hexo 4.2.1"></head>
-
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
+block content
+  article#post(class="")
+    #article-container.post-content!=page.content
+    include includes/post/post-copyright.pug
+    .tag_share
+      if (theme.post_meta.post.tags)
+        .post-meta__tag-list
+          each item, index in page.tags.data
+            a(href=url_for(item.path)).post-meta__tags #[=item.name]
+      !=partial('includes/share/index', {}, {cache:theme.fragment_cache})
         
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-骚年-Markdown/Windows/Win10 4k高分屏下远程桌面分辨率问题" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Windows/Win10%204k%E9%AB%98%E5%88%86%E5%B1%8F%E4%B8%8B%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E5%88%86%E8%BE%A8%E7%8E%87%E9%97%AE%E9%A2%98/" class="article-date">
-  <time datetime="2020-07-16T06:01:00.386Z" itemprop="datePublished">2020-07-16</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      骚年-Markdown/Windows/Win10 4k高分屏下远程桌面分辨率问题
-    </h1>
-  
+    if theme.reward.enable
+      !=partial('includes/post/reward', {}, {cache:theme.fragment_cache})
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>因为现在使用的是工作站笔记本是4K分辨率的屏幕，使用Win10自带的远程桌面时由于两遍分辨率不同，导致远程方的屏幕分辨率过高，导致需要带放大镜才能看得清，影响体验。</p>
-<p>这边有3种方法解决这个问题：</p>
-<h1 id="方法一（网上找的方法）："><a href="#方法一（网上找的方法）：" class="headerlink" title="方法一（网上找的方法）："></a>方法一（网上找的方法）：</h1><h2 id="1、修改注册表："><a href="#1、修改注册表：" class="headerlink" title="1、修改注册表："></a>1、修改注册表：</h2><p>用运行-regedit编辑注册表，找到：</p>
-<p>HKEY_LOCAL_MACHINE &gt; SOFTWARE &gt; Microsoft &gt; Windows &gt; CurrentVersion &gt; SideBySide，</p>
-<p>新建DWORD，</p>
-<p>命名PreferExternalManifest，</p>
-<p>并双击设置值为1.</p>
-<h2 id="2、在c-windows-system32新建文件mstsc-exe-manifest，并输入以下内容："><a href="#2、在c-windows-system32新建文件mstsc-exe-manifest，并输入以下内容：" class="headerlink" title="2、在c:\windows\system32新建文件mstsc.exe.manifest，并输入以下内容："></a>2、在c:\windows\system32新建文件mstsc.exe.manifest，并输入以下内容：</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">assembly</span> <span class="attr">xmlns</span>=<span class="string">"urn:schemas-microsoft-com:asm.v1"</span> <span class="attr">manifestVersion</span>=<span class="string">"1.0"</span> <span class="attr">xmlns:asmv3</span>=<span class="string">"urn:schemas-microsoft-com:asm.v3"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependentAssembly</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">assemblyIdentity</span> <span class="attr">type</span>=<span class="string">"win32"</span> <span class="attr">name</span>=<span class="string">"Microsoft.Windows.Common-Controls"</span> <span class="attr">version</span>=<span class="string">"6.0.0.0"</span> <span class="attr">processorArchitecture</span>=<span class="string">"*"</span> <span class="attr">publicKeyToken</span>=<span class="string">"6595b64144ccf1df"</span> <span class="attr">language</span>=<span class="string">"*"</span>&gt;</span><span class="tag">&lt;/<span class="name">assemblyIdentity</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependentAssembly</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependentAssembly</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">assemblyIdentity</span> <span class="attr">type</span>=<span class="string">"win32"</span> <span class="attr">name</span>=<span class="string">"Microsoft.VC90.CRT"</span> <span class="attr">version</span>=<span class="string">"9.0.21022.8"</span> <span class="attr">processorArchitecture</span>=<span class="string">"amd64"</span> <span class="attr">publicKeyToken</span>=<span class="string">"1fc8b3b9a1e18e3b"</span>&gt;</span><span class="tag">&lt;/<span class="name">assemblyIdentity</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependentAssembly</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">trustInfo</span> <span class="attr">xmlns</span>=<span class="string">"urn:schemas-microsoft-com:asm.v3"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">security</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">requestedPrivileges</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">requestedExecutionLevel</span> <span class="attr">level</span>=<span class="string">"asInvoker"</span> <span class="attr">uiAccess</span>=<span class="string">"false"</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">requestedPrivileges</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">security</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">trustInfo</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">asmv3:application</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">asmv3:windowsSettings</span> <span class="attr">xmlns</span>=<span class="string">"http://schemas.microsoft.com/SMI/2005/WindowsSettings"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">ms_windowsSettings:dpiAware</span> <span class="attr">xmlns:ms_windowsSettings</span>=<span class="string">"http://schemas.microsoft.com/SMI/2005/WindowsSettings"</span>&gt;</span>false<span class="tag">&lt;/<span class="name">ms_windowsSettings:dpiAware</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">asmv3:windowsSettings</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">asmv3:application</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">assembly</span>&gt;</span></span><br></pre></td></tr></table></figure>
+    //- ad
+    if theme.ad && theme.ad.post
+      .post-ad!=theme.ad.post
 
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Windows/Win10%204k%E9%AB%98%E5%88%86%E5%B1%8F%E4%B8%8B%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E5%88%86%E8%BE%A8%E7%8E%87%E9%97%AE%E9%A2%98/" data-id="ckcoibdeg000fo0uya2jb3w3x" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Windows/win2012-R2%E6%BF%80%E6%B4%BB%E7%A0%81/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          骚年-Markdown/Windows/win2012-R2激活码
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Windows/PLSQL_13.0.0.1883%E6%B3%A8%E5%86%8C%E7%A0%81/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">骚年-Markdown/Windows/PLSQL_13.0.0.1883注册码</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/%E7%91%9E%E9%80%9A-RHCE_8.0/2020%E5%B9%B47%E6%9C%885%E6%97%A5/">骚年-Markdown/瑞通-RHCE_8.0/2020年7月5日</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/%E7%91%9E%E9%80%9A-RHCE_8.0/2020%E5%B9%B46%E6%9C%8814%E6%97%A5/">骚年-Markdown/瑞通-RHCE_8.0/2020年6月14日</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/%E7%91%9E%E9%80%9A-RHCE_8.0/2020%E5%B9%B46%E6%9C%8813%E6%97%A5/">骚年-Markdown/瑞通-RHCE_8.0/2020年6月13日</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Windows/%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8F%91%E7%94%9F%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E9%94%99%E8%AF%AF%EF%BC%8C%E8%A6%81%E6%B1%82%E7%9A%84%E5%87%BD%E6%95%B0%E4%B8%8D%E5%8F%97%E6%94%AF%E6%8C%81/">骚年-Markdown/Windows/远程服务器发生身份验证错误，要求的函数不受支持</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Windows/%E8%AE%A1%E7%AE%97MD5%E4%B8%8ESHA1256%E5%80%BC/">骚年-Markdown/Windows/计算MD5与SHA1256值</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2020 SaoSao Nian<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
-  
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-  </div>
-</body>
-</html>
+    include includes/pagination.pug
+    if theme.related_post && theme.related_post.enable
+      != related_posts(page,site.posts)
+    if page.comments !== false
+      include includes/comments/index.pug
