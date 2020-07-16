@@ -1,25 +1,123 @@
-extends includes/layout.pug
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>骚年-Markdown/Oracle/安装文档/补丁安装/11G_R2-补丁升级（PSU_28729262） | Hexo</title><meta name="description" content="11G_R2-补丁升级（PSU_28729262）1、补丁升级1234567su - oraclecd &#x2F;software&#x2F;unzip p6880880_112000_Linux-x86-64.zipunzip p28729262_112040_Linux-x86-64\(PSU\).zip    2、确定补丁冲突1234567891011cd &#x2F;software&#x2F;28729262&#x2F;softwar"><meta name="author" content="SaoSao Nian"><meta name="copyright" content="SaoSao Nian"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://yoursite.com/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Oracle/%E5%AE%89%E8%A3%85%E6%96%87%E6%A1%A3/%E8%A1%A5%E4%B8%81%E5%AE%89%E8%A3%85/11G_R2-%E8%A1%A5%E4%B8%81%E5%8D%87%E7%BA%A7%EF%BC%88PSU_28729262%EF%BC%89/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="article"><meta property="og:title" content="骚年-Markdown/Oracle/安装文档/补丁安装/11G_R2-补丁升级（PSU_28729262）"><meta property="og:url" content="http://yoursite.com/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Oracle/%E5%AE%89%E8%A3%85%E6%96%87%E6%A1%A3/%E8%A1%A5%E4%B8%81%E5%AE%89%E8%A3%85/11G_R2-%E8%A1%A5%E4%B8%81%E5%8D%87%E7%BA%A7%EF%BC%88PSU_28729262%EF%BC%89/"><meta property="og:site_name" content="Hexo"><meta property="og:description" content="11G_R2-补丁升级（PSU_28729262）1、补丁升级1234567su - oraclecd &#x2F;software&#x2F;unzip p6880880_112000_Linux-x86-64.zipunzip p28729262_112040_Linux-x86-64\(PSU\).zip    2、确定补丁冲突1234567891011cd &#x2F;software&#x2F;28729262&#x2F;softwar"><meta property="og:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg"><meta property="article:published_time" content="2020-07-16T06:00:44.605Z"><meta property="article:modified_time" content="2020-06-17T04:53:27.266Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
 
-block content
-  article#post(class="")
-    #article-container.post-content!=page.content
-    include includes/post/post-copyright.pug
-    .tag_share
-      if (theme.post_meta.post.tags)
-        .post-meta__tag-list
-          each item, index in page.tags.data
-            a(href=url_for(item.path)).post-meta__tags #[=item.name]
-      !=partial('includes/share/index', {}, {cache:theme.fragment_cache})
-        
-    if theme.reward.enable
-      !=partial('includes/post/reward', {}, {cache:theme.fragment_cache})
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
 
-    //- ad
-    if theme.ad && theme.ad.post
-      .post-ad!=theme.ad.post
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
 
-    include includes/pagination.pug
-    if theme.related_post && theme.related_post.enable
-      != related_posts(page,site.posts)
-    if page.comments !== false
-      include includes/comments/index.pug
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="prev" title="骚年-Markdown/Oracle/安装文档/补丁安装/补丁升级" href="http://yoursite.com/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Oracle/%E5%AE%89%E8%A3%85%E6%96%87%E6%A1%A3/%E8%A1%A5%E4%B8%81%E5%AE%89%E8%A3%85/%E8%A1%A5%E4%B8%81%E5%8D%87%E7%BA%A7/"><link rel="next" title="骚年-Markdown/Linux-服务/Tuxedo/TUXEDO_9.1安装配置" href="http://yoursite.com/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Linux-%E6%9C%8D%E5%8A%A1/Tuxedo/TUXEDO_9.1%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  bookmark: {
+    message_prev: 'Press',
+    message_next: 'to bookmark this page'
+  },
+  runtime_unit: 'days',
+  runtime: false,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  highlightCopy: true,
+  highlightLang: true,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false    
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2020-06-17 12:53:27'
+}</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">60</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#11G-R2-补丁升级（PSU-28729262）"><span class="toc-number">1.</span> <span class="toc-text">11G_R2-补丁升级（PSU_28729262）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、补丁升级"><span class="toc-number">1.1.</span> <span class="toc-text">1、补丁升级</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、确定补丁冲突"><span class="toc-number">1.2.</span> <span class="toc-text">2、确定补丁冲突</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、开始安装"><span class="toc-number">1.3.</span> <span class="toc-text">3、开始安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、查看版本"><span class="toc-number">1.4.</span> <span class="toc-text">3、查看版本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4、配置基线"><span class="toc-number">1.5.</span> <span class="toc-text">4、配置基线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5、补丁升级后续部署"><span class="toc-number">1.6.</span> <span class="toc-text">5、补丁升级后续部署</span></a></li></ol></li></ol></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">Hexo</a></span><span class="pull-right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">骚年-Markdown/Oracle/安装文档/补丁安装/11G_R2-补丁升级（PSU_28729262）</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="Created 2020-07-16 14:00:44"><i class="far fa-calendar-alt fa-fw"></i> Created 2020-07-16</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="Updated 2020-06-17 12:53:27"><i class="fas fa-history fa-fw"></i> Updated 2020-06-17</span></time></div><div class="meta-secondline"> </div><div class="meta-thirdline"><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta__icon"></i><span>Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="11G-R2-补丁升级（PSU-28729262）"><a href="#11G-R2-补丁升级（PSU-28729262）" class="headerlink" title="11G_R2-补丁升级（PSU_28729262）"></a>11G_R2-补丁升级（PSU_28729262）</h1><h2 id="1、补丁升级"><a href="#1、补丁升级" class="headerlink" title="1、补丁升级"></a>1、补丁升级</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">su - oracle</span><br><span class="line"></span><br><span class="line">cd /software/</span><br><span class="line"></span><br><span class="line">unzip p6880880_112000_Linux-x86-64.zip</span><br><span class="line"></span><br><span class="line">unzip p28729262_112040_Linux-x86-64\(PSU\).zip</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2、确定补丁冲突"><a href="#2、确定补丁冲突" class="headerlink" title="2、确定补丁冲突"></a>2、确定补丁冲突</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">cd /software/28729262</span><br><span class="line">/software/OPatch/opatch prereq CheckConflictAgainstOHWithDetail -ph ./</span><br><span class="line"><span class="meta">#</span><span class="bash">Prereq <span class="string">"checkConflictAgainstOHWithDetail"</span> passed.</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">OPatch succeeded.</span></span><br><span class="line"></span><br><span class="line">cd /software/18841764</span><br><span class="line">/software/OPatch/opatch prereq CheckConflictAgainstOHWithDetail -ph ./</span><br><span class="line"><span class="meta">#</span><span class="bash">Prereq <span class="string">"checkConflictAgainstOHWithDetail"</span> passed.</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">OPatch succeeded.</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="3、开始安装"><a href="#3、开始安装" class="headerlink" title="3、开始安装"></a>3、开始安装</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">/software/OPatch/opatch apply /software/28729262/</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">Do you want to proceed? [y|n]   y</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">Email address/User Name:	回车</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">Do you wish to remain uninformed of security issues ([Y]es, [N]o) [N]:  y</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">Is the <span class="built_in">local</span> system ready <span class="keyword">for</span> patching? [y|n]    y</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">/software/OPatch/opatch apply /software/18841764/</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">Do you want to proceed? [y|n]   y</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">Email address/User Name:	回车</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">Do you wish to remain uninformed of security issues ([Y]es, [N]o) [N]:  y</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">Is the <span class="built_in">local</span> system ready <span class="keyword">for</span> patching? [y|n]    y</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="3、查看版本"><a href="#3、查看版本" class="headerlink" title="3、查看版本"></a>3、查看版本</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/software/OPatch/opatch lspatches</span><br><span class="line"><span class="meta">#</span><span class="bash">18841764;</span></span><br><span class="line"><span class="meta">#</span><span class="bash">28729262;Database Patch Set Update : 11.2.0.4.190115 (28729262)</span></span><br><span class="line"><span class="meta">#</span><span class="bash">OPatch succeeded.</span></span><br><span class="line"></span><br><span class="line">/software/OPatch/opatch lsinventory</span><br><span class="line"><span class="meta">#</span><span class="bash">Patch  18841764     : applied on Wed Jun 17 20:52:15 CST 2020</span></span><br><span class="line"><span class="meta">#</span><span class="bash">Patch  28729262     : applied on Wed Jun 17 20:49:50 CST 2020</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="4、配置基线"><a href="#4、配置基线" class="headerlink" title="4、配置基线"></a>4、配置基线</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--安全补丁</span></span><br><span class="line"></span><br><span class="line">SQL &gt;!opatch lsinventory</span><br><span class="line"></span><br><span class="line"><span class="comment">--补丁版本</span></span><br><span class="line"></span><br><span class="line">SQL &gt; set line 400</span><br><span class="line"></span><br><span class="line">SQL &gt; col action_time for a35</span><br><span class="line"></span><br><span class="line">SQL &gt; col comments for a50</span><br><span class="line"></span><br><span class="line">SQL &gt; alter session set nls_date_format = 'yyyy-mm-dd hh24:mi:ss';</span><br><span class="line"></span><br><span class="line">SQL &gt; select action_time,id,comments from dba_registry_history;</span><br><span class="line"></span><br><span class="line">ACTION_TIME                 ID COMMENTS</span><br><span class="line"></span><br><span class="line"><span class="comment">----------------------------------- ---------- -------------------</span></span><br><span class="line"></span><br><span class="line">24-AUG-13 12.03.45.119862 PM        0 Patchset 11.2.0.2.0</span><br><span class="line"></span><br><span class="line">25-APR-20 06.48.45.011288 PM      190115 PSU 11.2.0.4.190115</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="5、补丁升级后续部署"><a href="#5、补丁升级后续部署" class="headerlink" title="5、补丁升级后续部署"></a>5、补丁升级后续部署</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--对于正在修补的Oracle home上运行的每个数据库实例，使用SQL*Plus连接到数据库。连接为SYSDBA，确保无效对象设置为0，如果无效对象非0，则使用utlr .sql。然后运行catbundle。sql脚本如下:</span></span><br><span class="line"></span><br><span class="line">cd $ORACLE_HOME/rdbms/admin</span><br><span class="line"></span><br><span class="line">sqlplus / as sysdba</span><br><span class="line"></span><br><span class="line">SQL &gt; @catbundle.sql psu apply</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">--如果OJVM PSU应用于以前的PSU补丁，那么在执行catbundle之后，您可能会看到无效的Java类。前一步中的sql脚本。如果是这种情况，运行utlrp。sql来重新验证这些Java类。</span></span><br><span class="line"></span><br><span class="line">SQL &gt; @utlrp.sql</span><br></pre></td></tr></table></figure>
+
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">SaoSao Nian</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://yoursite.com/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Oracle/%E5%AE%89%E8%A3%85%E6%96%87%E6%A1%A3/%E8%A1%A5%E4%B8%81%E5%AE%89%E8%A3%85/11G_R2-%E8%A1%A5%E4%B8%81%E5%8D%87%E7%BA%A7%EF%BC%88PSU_28729262%EF%BC%89/">http://yoursite.com/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Oracle/%E5%AE%89%E8%A3%85%E6%96%87%E6%A1%A3/%E8%A1%A5%E4%B8%81%E5%AE%89%E8%A3%85/11G_R2-%E8%A1%A5%E4%B8%81%E5%8D%87%E7%BA%A7%EF%BC%88PSU_28729262%EF%BC%89/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Oracle/%E5%AE%89%E8%A3%85%E6%96%87%E6%A1%A3/%E8%A1%A5%E4%B8%81%E5%AE%89%E8%A3%85/%E8%A1%A5%E4%B8%81%E5%8D%87%E7%BA%A7/"><img class="prev-cover" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">骚年-Markdown/Oracle/安装文档/补丁安装/补丁升级</div></div></a></div><div class="next-post pull-right"><a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Linux-%E6%9C%8D%E5%8A%A1/Tuxedo/TUXEDO_9.1%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/"><img class="next-cover" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">骚年-Markdown/Linux-服务/Tuxedo/TUXEDO_9.1安装配置</div></div></a></div></nav></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 By SaoSao Nian</div><div class="framework-info"><span>Driven </span><a href="https://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="font_plus" type="button" title="Increase Font Size"><i class="fas fa-plus"></i></button><button id="font_minus" type="button" title="Decrease Font Size"><i class="fas fa-minus"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">繁</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script></body></html>

@@ -1,7 +1,199 @@
-extends includes/layout.pug
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Hexo</title><meta name="description"><meta name="author" content="SaoSao Nian"><meta name="copyright" content="SaoSao Nian"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://yoursite.com/page/2/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="website"><meta property="og:title" content="Hexo"><meta property="og:url" content="http://yoursite.com/page/2/"><meta property="og:site_name" content="Hexo"><meta property="og:description"><meta property="og:image" content="http://yoursite.com/img/avatar.png"><meta property="article:published_time" content="2020-07-16T08:24:48.048Z"><meta property="article:modified_time" content="2020-07-16T08:24:48.048Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
 
-block content
-  include ./includes/mixins/post-ui.pug
-  #recent-posts.recent-posts
-    +postUI
-    include includes/pagination.pug
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
+
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  bookmark: {
+    message_prev: 'Press',
+    message_next: 'to bookmark this page'
+  },
+  runtime_unit: 'days',
+  runtime: false,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  highlightCopy: true,
+  highlightLang: true,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false    
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isSidebar: false,
+  postUpdate: '2020-07-16 16:24:48'
+}</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">60</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(https://i.loli.net/2020/05/01/IuWi8QbHvzjlOPw.jpg)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">Hexo</a></span><span class="pull-right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="site-info"><h1 id="site_title">Hexo</h1><div id="site_subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/xxxxx" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:xxxxxx@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div id="scroll_down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout_page" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/VMware/%E4%BF%AE%E6%94%B9EXSI%E4%B8%BB%E6%9C%BA%E5%90%8D/" title="骚年-Markdown/VMware/修改EXSI主机名">     <img class="post_bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="骚年-Markdown/VMware/修改EXSI主机名"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/VMware/%E4%BF%AE%E6%94%B9EXSI%E4%B8%BB%E6%9C%BA%E5%90%8D/" title="骚年-Markdown/VMware/修改EXSI主机名">骚年-Markdown/VMware/修改EXSI主机名</a><div class="article-meta-wrap"><time class="post-meta__date" title="Created 2020-07-16 14:01:00"><i class="far fa-calendar-alt"></i>2020-07-16</time></div><div class="content">修改EXSI主机名1esxcfg-advcfg -s HOSTNAME /Misc/HostName
+
+</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/RHEL-8/RHEL_8.1-%E9%85%8D%E7%BD%AEyum%E3%80%81dnf%E6%BA%90/" title="骚年-Markdown/RHEL-8/RHEL_8.1-配置yum、dnf源">     <img class="post_bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="骚年-Markdown/RHEL-8/RHEL_8.1-配置yum、dnf源"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/RHEL-8/RHEL_8.1-%E9%85%8D%E7%BD%AEyum%E3%80%81dnf%E6%BA%90/" title="骚年-Markdown/RHEL-8/RHEL_8.1-配置yum、dnf源">骚年-Markdown/RHEL-8/RHEL_8.1-配置yum、dnf源</a><div class="article-meta-wrap"><time class="post-meta__date" title="Created 2020-07-16 14:01:00"><i class="far fa-calendar-alt"></i>2020-07-16</time></div><div class="content">RHEL_8-配置yum、dnf源创建挂载目录1mkdir -p /media/cdrom
+
+
+
+挂载目录1234567umount /dev/sr0mount /dev/cdrom /media/cdrommount /dev/hdc /media/cdrom mount /dev/scd0 /media/cdrom mount /dev/sr0 /media/cdrom    df -h
+
+
+
+新建repo文件1234567891011121314151617cd /etc/yum.repos.d/mkdir -p /etc/yum.repos.d/bakmv -f /etc/yum.repos.d/*.repo /etc/yum.repos.d/bakcat &lt;&lt;END &gt; /etc/yum.repos.d/weizhi.repo[Local_AppStream]name=Local_AppStreambaseurl=file:///media/cdrom/AppStreamenabled=1gpgcheck=0[Local_BaseOS]name=Local_ ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/RHEL-8/RHEL_8.1-%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/" title="骚年-Markdown/RHEL-8/RHEL_8.1-网络配置">     <img class="post_bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="骚年-Markdown/RHEL-8/RHEL_8.1-网络配置"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/RHEL-8/RHEL_8.1-%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/" title="骚年-Markdown/RHEL-8/RHEL_8.1-网络配置">骚年-Markdown/RHEL-8/RHEL_8.1-网络配置</a><div class="article-meta-wrap"><time class="post-meta__date" title="Created 2020-07-16 14:01:00"><i class="far fa-calendar-alt"></i>2020-07-16</time></div><div class="content">RHEL8和CentOS8怎么重启网络序：
+本文主要讲解如何重启RHEL 8或者CentOS 8网络以及如何解决RHEL8和CentOS8系统的网络管理服务报错，当我们安装好RHEL 8或者 CentOS 8，重启启动网络时，会出现以下报错：
+
+历史命令失效1systemctl restart network.service
+
+报错信息如下
+Failed to restart network.service: Unit network.service not found.意思为无法重启网络服务，原因是无法找到network.service网络服务。
+出现错误的原因是在RHEL 8和CentOS 8系统里，已废弃network.service。因此只能通过其它方法进行网络配置，包括NM命令工具集。换言之，在rhel8上，必须开启NM，否则无法使用网络。
+RHEL8新配置命令下文假设你的网卡标识为xxx，可以通过以下命令确定网卡标识符
+ip addr
+比如ens33等等这类标识。
+
+RHEL8或者CentOS8配置网络的三种方法RHEL8或者CentOS8应该使用nmcli管理网络
+
+手工 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/RHEL-8/RHEL_8.1-%E6%8C%82%E8%BD%BD%E9%95%9C%E5%83%8F/" title="骚年-Markdown/RHEL-8/RHEL_8.1-挂载镜像">     <img class="post_bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="骚年-Markdown/RHEL-8/RHEL_8.1-挂载镜像"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/RHEL-8/RHEL_8.1-%E6%8C%82%E8%BD%BD%E9%95%9C%E5%83%8F/" title="骚年-Markdown/RHEL-8/RHEL_8.1-挂载镜像">骚年-Markdown/RHEL-8/RHEL_8.1-挂载镜像</a><div class="article-meta-wrap"><time class="post-meta__date" title="Created 2020-07-16 14:01:00"><i class="far fa-calendar-alt"></i>2020-07-16</time></div><div class="content">RHEL_8.1-挂载镜像上传ISO到本地12345mkdir /softwarell /software/total 7667712-rw-r--r--. 1 root root 7851737088 May 30 21:52 rhel-8.1-x86_64-dvd.iso
+
+
+
+手动挂载12mkdir /media/cdrom -pmount -t iso9660 -o loop /software/rhel-8.1-x86_64-dvd.iso /media/cdrom
+
+
+
+自动挂载12345678910111213141516171819202122232425262728293031vim /etc/fstab/software/rhel-8.1-x86_64-dvd.iso /media/cdrom iso9660 defaults,ro,loop 0 0 #然后再mount -a 挂载#但是或许会出现如下问题：cat /etc/fstab |grep iso#/root/rh401-pub.iso /mediaiso9660 defaults,ro,loop 0 0mo ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/RHEL-8/RHEL_8.1-%E5%88%9D%E5%A7%8B%E5%8C%96%E6%B1%87%E6%80%BB/" title="骚年-Markdown/RHEL-8/RHEL_8.1-初始化汇总">     <img class="post_bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="骚年-Markdown/RHEL-8/RHEL_8.1-初始化汇总"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/RHEL-8/RHEL_8.1-%E5%88%9D%E5%A7%8B%E5%8C%96%E6%B1%87%E6%80%BB/" title="骚年-Markdown/RHEL-8/RHEL_8.1-初始化汇总">骚年-Markdown/RHEL-8/RHEL_8.1-初始化汇总</a><div class="article-meta-wrap"><time class="post-meta__date" title="Created 2020-07-16 14:01:00"><i class="far fa-calendar-alt"></i>2020-07-16</time></div><div class="content">系统初始化相关[TOC]
+Cockpit（飞机驾驶舱）使用方法在web浏览器中查看服务器并使用鼠标执行系统任务。很容易管理存储、配置网络和检查日志等操作。
+1) RHEL 8 自动安装了 Cockpit，Cockpit 所需的防火墙端口会自动打开2) Cockpit 界面可用于将基于策略的解密（PBD）规则应用于受管系统上的磁盘3) 对于在身份管理（IdM）域中注册的系统，Cockpit 默认使用域的集中管理的 IdM 资源4) Cockpit 菜单和页面可以在移劢浏览器上导航5) 可以从 Cockpit Web 界面创建和管理虚拟机6) 现在可以将“虚拟机”页面添加到 Cockpit 界面，该界面使用户可以创建和管理基于 libvirt 的虚拟机
+123456789101112131415#安装cockpitrpm -qa | grep cockpitdnf -y install cockpit#虚拟机管理模块dnf install -y cockpit-machines#启用cockpit#设置开机自启动同时开启服务一条命令就可以搞定systemctl enable --now c ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/RHEL-8/12c-redhat8%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99/" title="骚年-Markdown/RHEL-8/12c-redhat8安装报错">     <img class="post_bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="骚年-Markdown/RHEL-8/12c-redhat8安装报错"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/RHEL-8/12c-redhat8%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99/" title="骚年-Markdown/RHEL-8/12c-redhat8安装报错">骚年-Markdown/RHEL-8/12c-redhat8安装报错</a><div class="article-meta-wrap"><time class="post-meta__date" title="Created 2020-07-16 14:01:00"><i class="far fa-calendar-alt"></i>2020-07-16</time></div><div class="content">dnf install libnsldnf install make
+su - oracleexport CV_ASSUME_DISTID=RHEL8.1
+Perform the following modifications to the “$ORACLE_HOME/rdbms/lib/env_rdbms.mk” file.
+Line 176FROM:LINKTTLIBS=$(LLIBCLNTSH) $(ORACLETTLIBS) $(LINKLDLIBS)
+TO  :LINKTTLIBS=$(LLIBCLNTSH) $(ORACLETTLIBS) $(LINKLDLIBS) -lons
+Line 279-280FROM:LINK=$(FORT_CMD) $(PURECMDS) $(ORALD) $(LDFLAGS) $(COMPSOBJS)LINK32=$(FORT_CMD) $(PURECMDS) $(ORALD) $(LDFLAGS32) $(COMPSOBJS)
+TO  :LINK=$(FORT_CMD) $(PURECMDS) $(ORALD) $(LDFLAGS) $(C ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/RHEL-7/%E5%90%8C%E6%AD%A5%E6%97%B6%E9%97%B4ntpdate/" title="骚年-Markdown/RHEL-7/同步时间ntpdate">     <img class="post_bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="骚年-Markdown/RHEL-7/同步时间ntpdate"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/RHEL-7/%E5%90%8C%E6%AD%A5%E6%97%B6%E9%97%B4ntpdate/" title="骚年-Markdown/RHEL-7/同步时间ntpdate">骚年-Markdown/RHEL-7/同步时间ntpdate</a><div class="article-meta-wrap"><time class="post-meta__date" title="Created 2020-07-16 14:01:00"><i class="far fa-calendar-alt"></i>2020-07-16</time></div><div class="content">同步时间ntpdate手动执行同步时间which ntpdate
+which hwclock
+同步时间/usr/sbin/ntpdate 192.168.8.8
+同步硬件BIOS时间/usr/sbin/hwclock -w
+添加计划任务crontab -e
+0 0 * * * /usr/sbin/ntpdate 192.168.8.8; /usr/sbin/hwclock -w
+查看计划任务crontab -l
+</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/RHEL-7/VMware%E5%B0%86%E5%B7%B2%E6%9C%89%E5%81%9A%E4%BA%86LVM%E7%9A%84%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD%E5%88%B0%E5%85%B6%E4%BB%96%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%93%8D%E4%BD%9C/" title="骚年-Markdown/RHEL-7/VMware将已有做了LVM的磁盘挂载到其他系统的操作">     <img class="post_bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="骚年-Markdown/RHEL-7/VMware将已有做了LVM的磁盘挂载到其他系统的操作"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/RHEL-7/VMware%E5%B0%86%E5%B7%B2%E6%9C%89%E5%81%9A%E4%BA%86LVM%E7%9A%84%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD%E5%88%B0%E5%85%B6%E4%BB%96%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%93%8D%E4%BD%9C/" title="骚年-Markdown/RHEL-7/VMware将已有做了LVM的磁盘挂载到其他系统的操作">骚年-Markdown/RHEL-7/VMware将已有做了LVM的磁盘挂载到其他系统的操作</a><div class="article-meta-wrap"><time class="post-meta__date" title="Created 2020-07-16 14:01:00"><i class="far fa-calendar-alt"></i>2020-07-16</time></div><div class="content">VMware将已有做了LVM的磁盘挂载到其他系统的操作1、以下是一个VMWARE 虚拟机Linux系统磁盘故障恢复的经验分享。
+发生时间：2018年7月16日因为VMWare虚拟机Linux服务器系统（A)故障，无法开机，将故障的虚拟机的磁盘挂载到其他Linux服务器（B）（VMware后台添加已有磁盘），这个磁盘在发生故障前做了LVM，登录服务器（B）进行vg导入操作。
+
+2、查看pv，主要关注/dev/sdc2，因为这个是故障服务器（A）挂载过来的虚拟磁盘。1234567891011[root@oem12c ~]# pvs  PV         VG         Fmt  Attr PSize   PFree    /dev/sda2  vg_oem12c  lvm2 a--u 199.51g       0  /dev/sda3  vg_oem12c  lvm2 a--u  99.99g       0  /dev/sdb   vg_oem12c  lvm2 a--u 100.00g 1012.00m  /dev/sdc2  vg_jiuyuan lvm2 a--u 119 ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/RHEL-7/Minimal%E5%AE%89%E8%A3%85%E5%9B%BE%E5%BD%A2%E5%8C%96%E7%95%8C%E9%9D%A2/" title="骚年-Markdown/RHEL-7/Minimal安装图形化界面">     <img class="post_bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="骚年-Markdown/RHEL-7/Minimal安装图形化界面"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/RHEL-7/Minimal%E5%AE%89%E8%A3%85%E5%9B%BE%E5%BD%A2%E5%8C%96%E7%95%8C%E9%9D%A2/" title="骚年-Markdown/RHEL-7/Minimal安装图形化界面">骚年-Markdown/RHEL-7/Minimal安装图形化界面</a><div class="article-meta-wrap"><time class="post-meta__date" title="Created 2020-07-16 14:01:00"><i class="far fa-calendar-alt"></i>2020-07-16</time></div><div class="content">挂载镜像源
+配置YUM
+yum -y groupinstall “Server with GUI”
+即可安装。
+安装完成后，设置以后直接从图形界面启动：
+systemctl set-default graphical.target
+systemctl start graphical.target
+yum erase gnome-initial-setup -y
+</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/RHEL-7/LVM-edit/" title="骚年-Markdown/RHEL-7/LVM-edit">     <img class="post_bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="骚年-Markdown/RHEL-7/LVM-edit"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/RHEL-7/LVM-edit/" title="骚年-Markdown/RHEL-7/LVM-edit">骚年-Markdown/RHEL-7/LVM-edit</a><div class="article-meta-wrap"><time class="post-meta__date" title="Created 2020-07-16 14:01:00"><i class="far fa-calendar-alt"></i>2020-07-16</time></div><div class="content">LVM操作新加盘扫描12#内核读取分区：partprode dev/sda1
+
+
+
+硬盘分区12345678910fdisk /dev/sdb#输入np1回车回车fdisk -l dev/sdb
+
+
+
+创建LVM创建PV：1pvcreate /dev/sdb1
+
+
+
+创建VG：12#vgmvg（vg名）vgcreate vgdata /dev/sdb1
+
+
+
+创建LV：12#lvcreate -L 1000G -n lv_oradata vgdatalvcreate -l 100%VG -n lv_oradata vgdata
+
+
+
+创建文件系统XFS：1mkfs.xfs /dev/vgdata/lv_oradata
+
+
+
+添加自动挂载：123#noatime（因为系统运行的时候要访问大量文件，如果能减少一些动作（比如减少时间戳的记录次数等）将会显著提高磁盘 IO 的效率、提升文件系统的性能。）vim /etc/fstab/dev/vgdata/lv_oradata /oradata xfs defaults,noatime 0 0
+
+
+
+挂载LV到数据目录：1234567mount  ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">SaoSao Nian</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives"><div class="headline">Articles</div><div class="length_num">60</div></a></div></div><div class="card-info-bookmark is-center"><button class="button--animated" id="bookmark-it" type="button" title="Bookmark"><i class="fas fa-bookmark"></i><span>Bookmark</span></button></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/xxxxx" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:xxxxxx@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-recent-item"><div class="aside-recent-post"><a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/%E7%91%9E%E9%80%9A-RHCE_8.0/2020%E5%B9%B47%E6%9C%885%E6%97%A5/"><div class="aside-post-cover"><img class="aside-post-bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" title="骚年-Markdown/瑞通-RHCE_8.0/2020年7月5日" alt="骚年-Markdown/瑞通-RHCE_8.0/2020年7月5日"/></div><div class="aside-post-title"><div class="aside-post_title" href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/%E7%91%9E%E9%80%9A-RHCE_8.0/2020%E5%B9%B47%E6%9C%885%E6%97%A5/" title="骚年-Markdown/瑞通-RHCE_8.0/2020年7月5日">骚年-Markdown/瑞通-RHCE_8.0/2020年7月5日</div><time class="aside-post_meta post-meta__date" title="Created 2020-07-16 14:01:06">2020-07-16</time></div></a></div><div class="aside-recent-post"><a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/%E7%91%9E%E9%80%9A-RHCE_8.0/2020%E5%B9%B46%E6%9C%8814%E6%97%A5/"><div class="aside-post-cover"><img class="aside-post-bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" title="骚年-Markdown/瑞通-RHCE_8.0/2020年6月14日" alt="骚年-Markdown/瑞通-RHCE_8.0/2020年6月14日"/></div><div class="aside-post-title"><div class="aside-post_title" href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/%E7%91%9E%E9%80%9A-RHCE_8.0/2020%E5%B9%B46%E6%9C%8814%E6%97%A5/" title="骚年-Markdown/瑞通-RHCE_8.0/2020年6月14日">骚年-Markdown/瑞通-RHCE_8.0/2020年6月14日</div><time class="aside-post_meta post-meta__date" title="Created 2020-07-16 14:01:06">2020-07-16</time></div></a></div><div class="aside-recent-post"><a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/%E7%91%9E%E9%80%9A-RHCE_8.0/2020%E5%B9%B46%E6%9C%8813%E6%97%A5/"><div class="aside-post-cover"><img class="aside-post-bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" title="骚年-Markdown/瑞通-RHCE_8.0/2020年6月13日" alt="骚年-Markdown/瑞通-RHCE_8.0/2020年6月13日"/></div><div class="aside-post-title"><div class="aside-post_title" href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/%E7%91%9E%E9%80%9A-RHCE_8.0/2020%E5%B9%B46%E6%9C%8813%E6%97%A5/" title="骚年-Markdown/瑞通-RHCE_8.0/2020年6月13日">骚年-Markdown/瑞通-RHCE_8.0/2020年6月13日</div><time class="aside-post_meta post-meta__date" title="Created 2020-07-16 14:01:06">2020-07-16</time></div></a></div><div class="aside-recent-post"><a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Windows/%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8F%91%E7%94%9F%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E9%94%99%E8%AF%AF%EF%BC%8C%E8%A6%81%E6%B1%82%E7%9A%84%E5%87%BD%E6%95%B0%E4%B8%8D%E5%8F%97%E6%94%AF%E6%8C%81/"><div class="aside-post-cover"><img class="aside-post-bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" title="骚年-Markdown/Windows/远程服务器发生身份验证错误，要求的函数不受支持" alt="骚年-Markdown/Windows/远程服务器发生身份验证错误，要求的函数不受支持"/></div><div class="aside-post-title"><div class="aside-post_title" href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Windows/%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8F%91%E7%94%9F%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E9%94%99%E8%AF%AF%EF%BC%8C%E8%A6%81%E6%B1%82%E7%9A%84%E5%87%BD%E6%95%B0%E4%B8%8D%E5%8F%97%E6%94%AF%E6%8C%81/" title="骚年-Markdown/Windows/远程服务器发生身份验证错误，要求的函数不受支持">骚年-Markdown/Windows/远程服务器发生身份验证错误，要求的函数不受支持</div><time class="aside-post_meta post-meta__date" title="Created 2020-07-16 14:01:00">2020-07-16</time></div></a></div><div class="aside-recent-post"><a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Windows/%E8%AE%A1%E7%AE%97MD5%E4%B8%8ESHA1256%E5%80%BC/"><div class="aside-post-cover"><img class="aside-post-bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" title="骚年-Markdown/Windows/计算MD5与SHA1256值" alt="骚年-Markdown/Windows/计算MD5与SHA1256值"/></div><div class="aside-post-title"><div class="aside-post_title" href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Windows/%E8%AE%A1%E7%AE%97MD5%E4%B8%8ESHA1256%E5%80%BC/" title="骚年-Markdown/Windows/计算MD5与SHA1256值">骚年-Markdown/Windows/计算MD5与SHA1256值</div><time class="aside-post_meta post-meta__date" title="Created 2020-07-16 14:01:00">2020-07-16</time></div></a></div></div></div></div><div class="card-widget card-archives"><div class="card-content"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/07/"><span class="card-archive-list-date">July 2020</span><span class="card-archive-list-count">60</span></a></li></ul></div></div><div class="card-widget card-webinfo"><div class="card-content"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="webinfo-article-name">Article :</div><div class="webinfo-article-count">60</div></div><div class="webinfo-item">      <div class="webinfo-site-uv-name">UV :</div><div class="webinfo-site-uv-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="webinfo-site-name">PV :</div><div class="webinfo-site-pv-count" id="busuanzi_value_site_pv"></div></div></div></div></div></div></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 By SaoSao Nian</div><div class="framework-info"><span>Driven </span><a href="https://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">繁</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script><script src="https://cdn.jsdelivr.net/npm/typed.js"></script><script>var subtitleEffect = true
+if (subtitleEffect) { 
+  var typed = new Typed("#subtitle", {
+    strings: "今日事&#44;今日畢,Never put off till tomorrow what you can do today".split(","),
+    startDelay: 300,
+    typeSpeed: 150,
+    loop: true,
+    backSpeed: 50
+  })
+} else {
+  document.getElementById("subtitle").innerHTML = '今日事&#44;今日畢'
+}</script></body></html>

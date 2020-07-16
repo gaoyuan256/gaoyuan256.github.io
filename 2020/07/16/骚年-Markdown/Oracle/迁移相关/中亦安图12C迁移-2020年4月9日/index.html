@@ -1,25 +1,409 @@
-extends includes/layout.pug
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>骚年-Markdown/Oracle/迁移相关/中亦安图12C迁移-2020年4月9日 | Hexo</title><meta name="description" content="\1. 源端收集迁移用户JZTA_HIS信息 &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; 1.1 检查用户信息  set lines 222 pag"><meta name="author" content="SaoSao Nian"><meta name="copyright" content="SaoSao Nian"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://yoursite.com/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Oracle/%E8%BF%81%E7%A7%BB%E7%9B%B8%E5%85%B3/%E4%B8%AD%E4%BA%A6%E5%AE%89%E5%9B%BE12C%E8%BF%81%E7%A7%BB-2020%E5%B9%B44%E6%9C%889%E6%97%A5/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="article"><meta property="og:title" content="骚年-Markdown/Oracle/迁移相关/中亦安图12C迁移-2020年4月9日"><meta property="og:url" content="http://yoursite.com/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Oracle/%E8%BF%81%E7%A7%BB%E7%9B%B8%E5%85%B3/%E4%B8%AD%E4%BA%A6%E5%AE%89%E5%9B%BE12C%E8%BF%81%E7%A7%BB-2020%E5%B9%B44%E6%9C%889%E6%97%A5/"><meta property="og:site_name" content="Hexo"><meta property="og:description" content="\1. 源端收集迁移用户JZTA_HIS信息 &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; 1.1 检查用户信息  set lines 222 pag"><meta property="og:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg"><meta property="article:published_time" content="2020-07-16T06:00:59.839Z"><meta property="article:modified_time" content="2020-06-03T13:26:58.838Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
 
-block content
-  article#post(class="")
-    #article-container.post-content!=page.content
-    include includes/post/post-copyright.pug
-    .tag_share
-      if (theme.post_meta.post.tags)
-        .post-meta__tag-list
-          each item, index in page.tags.data
-            a(href=url_for(item.path)).post-meta__tags #[=item.name]
-      !=partial('includes/share/index', {}, {cache:theme.fragment_cache})
-        
-    if theme.reward.enable
-      !=partial('includes/post/reward', {}, {cache:theme.fragment_cache})
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
 
-    //- ad
-    if theme.ad && theme.ad.post
-      .post-ad!=theme.ad.post
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
 
-    include includes/pagination.pug
-    if theme.related_post && theme.related_post.enable
-      != related_posts(page,site.posts)
-    if page.comments !== false
-      include includes/comments/index.pug
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="prev" title="骚年-Markdown/Oracle/迁移相关/数据泵操作样例-2020年5月26日" href="http://yoursite.com/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Oracle/%E8%BF%81%E7%A7%BB%E7%9B%B8%E5%85%B3/%E6%95%B0%E6%8D%AE%E6%B3%B5%E6%93%8D%E4%BD%9C%E6%A0%B7%E4%BE%8B-2020%E5%B9%B45%E6%9C%8826%E6%97%A5/"><link rel="next" title="骚年-Markdown/Oracle/迁移相关/XTTS/XTTS" href="http://yoursite.com/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Oracle/%E8%BF%81%E7%A7%BB%E7%9B%B8%E5%85%B3/XTTS/XTTS/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  bookmark: {
+    message_prev: 'Press',
+    message_next: 'to bookmark this page'
+  },
+  runtime_unit: 'days',
+  runtime: false,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  highlightCopy: true,
+  highlightLang: true,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false    
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: false,
+  postUpdate: '2020-06-03 21:26:58'
+}</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">60</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">Hexo</a></span><span class="pull-right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">骚年-Markdown/Oracle/迁移相关/中亦安图12C迁移-2020年4月9日</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="Created 2020-07-16 14:00:59"><i class="far fa-calendar-alt fa-fw"></i> Created 2020-07-16</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="Updated 2020-06-03 21:26:58"><i class="fas fa-history fa-fw"></i> Updated 2020-06-03</span></time></div><div class="meta-secondline"> </div><div class="meta-thirdline"><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta__icon"></i><span>Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><p>\1. 源端收集迁移用户JZTA_HIS信息</p>
+<p>===================================================================================================================================================</p>
+<p>1.1 检查用户信息</p>
+<hr>
+<p>set lines 222 pages 222</p>
+<p>col temporary_TABLESPACE for a18</p>
+<p>col DEFAULT_TABLESPACE for a13</p>
+<p>col ACCOUNT_STATUS for a22</p>
+<p>col PASSWORD for a22</p>
+<p>col USERNAME for a23</p>
+<p>col profile for a20</p>
+<p>select USERNAME,ACCOUNT_STATUS,DEFAULT_TABLESPACE,TEMPORARY_TABLESPACE,CREATED,expiry_date,profile from dba_users where USERNAME=’JZTA_HIS’;</p>
+<p>1.2 检查对象信息</p>
+<hr>
+<p>define U=”‘JZTA_HIS’”</p>
+<p>set verify off</p>
+<p>set feedback off</p>
+<p>set lines 222 pages 222</p>
+<p>COLUMN owner      FORMAT a22         HEADING ‘Owner’      ENTMAP off</p>
+<p>COLUMN tablespace_name FORMAT a25         HEADING ‘Tablespace Name’ ENTMAP off</p>
+<p>COLUMN segment_type   FORMAT a25         HEADING ‘Segment Type’   ENTMAP off</p>
+<p>COLUMN seg_count    FORMAT 999,999,999,999   HEADING ‘Segment Count’  ENTMAP off</p>
+<p>col OBJECT_TYPE for a22</p>
+<p>col INDEX_TYPE for a22</p>
+<p>col uniqueness for a15</p>
+<p>col status for a15</p>
+<p>break on report on owner</p>
+<p>set pagesize 10000 lines 222</p>
+<p>select owner,OBJECT_TYPE,status,count(*) from dba_objects where owner IN (&amp;U) and (owner,object_name) not in (select owner,object_name from dba_recyclebin where owner in (&amp;U))</p>
+<p>group by owner,OBJECT_TYPE,status order by owner,OBJECT_TYPE,status;</p>
+<p>col table_name    for a33</p>
+<p>col CONSTRAINT_NAME for a22</p>
+<p>col CONSTRAINT_TYPE for a2</p>
+<p>col INDEX_NAME    for a30</p>
+<p>select owner,CONSTRAINT_TYPE,STATUS,count(*) from dba_constraints where owner IN (&amp;U) and table_name not like ‘BIN$%’ group by owner,CONSTRAINT_TYPE,STATUS order by 1,2,3;</p>
+<p>select index_type,uniqueness,status,count(*) from dba_indexes where owner IN (&amp;U) group by index_type,uniqueness,status order by 1,2,3;</p>
+<p>select owner,table_name,CONSTRAINT_NAME,CONSTRAINT_TYPE,INDEX_NAME from dba_constraints where CONSTRAINT_NAME like ‘SYS_%’ and CONSTRAINT_TYPE=’P’ and table_name not like ‘BIN$%’ AND owner in (&amp;U) ;</p>
+<p>select owner,table_name,CONSTRAINT_NAME,CONSTRAINT_TYPE,INDEX_NAME from dba_constraints where CONSTRAINT_NAME&lt;&gt;INDEX_NAME and CONSTRAINT_TYPE=’P’ and table_name not like ‘BIN$%’ AND owner in (&amp;U) ;</p>
+<p>col m for 999,999,999</p>
+<p>SELECT</p>
+<p>   owner</p>
+<p> ,  tablespace_name</p>
+<p> , segment_type</p>
+<p> ,  round(sum(bytes)/1024/1024) m</p>
+<p> , count(*)  seg_count</p>
+<p>FROM</p>
+<p>  dba_segments where owner IN (&amp;U) and segment_name not like ‘BIN$%’</p>
+<p>GROUP BY</p>
+<p>  owner</p>
+<p> , tablespace_name</p>
+<p> , segment_type</p>
+<p>ORDER BY</p>
+<p>  owner</p>
+<p> , tablespace_name</p>
+<p> , segment_type;</p>
+<p> set verify on</p>
+<p>set feedback on</p>
+<p>select owner,tablespace_name,round(sum(bytes)/1024/1024/1024) G from dba_segments where owner IN (&amp;U) group by owner,tablespace_name order by 1,2,3; </p>
+<p>select ‘grant ‘||privilege||’ on ‘||owner||’.’||table_name||’ to ‘||grantee||’;’ OBJ_priv_DDL from dba_tab_privs where grantee IN (&amp;U) order by grantee;</p>
+<p>1.3 检查回收站</p>
+<hr>
+<p>col owner for a13</p>
+<p>select owner,original_name,OBJECT_NAME,TYPE,SPACE,droptime from dba_recyclebin where owner IN (&amp;U);</p>
+<p>注：如有建议清理</p>
+<p>1.4 检查SQL PROFILE</p>
+<hr>
+<p>select name,category,sql_text,status,FORCE_MATCHING from dba_sql_profiles order by 1;</p>
+<p>1.5 检查字符集</p>
+<hr>
+<p>col PARAMETER for a30</p>
+<p>col VALUE for a30</p>
+<p>select * from v$nls_parameters where parameter like ‘NLS_%CHARACTERSET’;</p>
+<p>1.6 创建directory</p>
+<hr>
+<p>set linesize 400 pagesize 100</p>
+<p>col OWNER for a5  </p>
+<p>col DIRECTORY_NAME for a22</p>
+<p>col DIRECTORY_PATH for a80</p>
+<p>select * from dba_directories;</p>
+<p>!df -h</p>
+<p>!mkdir /home/oracle/pump_dir</p>
+<p>create directory pyas_pump_dir as ‘/home/oracle/pump_dir’;</p>
+<p>pyasec生产库</p>
+<p>SYS  PYAS_PUMP_DIR   /home/oracle/pump_dir  </p>
+<p>his导入库</p>
+<p>SYS  PYAS_HIS_DIR       /home/oracle/his_dir  </p>
+<p>1.7 锁定用户</p>
+<hr>
+<p>alter user JZTA_HIS account lock;</p>
+<p>1.8 清理迁移用户的连接会话</p>
+<hr>
+<p>统计迁移用户的连接信息：</p>
+<p>select inst_id,username,program,status,count(*) from gv$session where username in (‘JZTA_HIS’) group by inst_id,username,program,status order by 1,2,3,4;</p>
+<p>将迁移用户的连接结束：</p>
+<p>select s.username,sid,spid,s.program,s.LAST_CALL_ET s from v$session s,v$process p where p.addr=s.paddr and s.username in (‘JZTA_HIS’);</p>
+<p>select ‘ho kill -9 ‘||spid from v$session s,v$process p where p.addr=s.paddr and s.username in (‘JZTA_HIS’);</p>
+<p>再次统计迁移用户的连接信息，返回空则继续：</p>
+<p>select inst_id,username,program,status,count(*) from gv$session where username in (‘JZTA_HIS’) group by inst_id,username,program,status order by 1,2,3,4;</p>
+<p>注：原库其他用户连接不受影响</p>
+<p>1.9 停止相关定时任务</p>
+<hr>
+<p>查看是否存在再导出时间段内存在任务，包括JOB，SCHEDULE和CRONTAB。</p>
+<p>如果存在提前禁用。</p>
+<p>JOB</p>
+<p>select ‘exec dbms_ijob.broken(‘||job||’,true);’ from dba_jobs where log_user in (‘JZTA_HIS’);</p>
+<p>再次确认</p>
+<p>select job,what,broken from dba_jobs where log_user in (‘JZTA_HIS’);</p>
+<p>1.10 源库导出数据</p>
+<hr>
+<p>nohup expdp “‘/ as sysdba’” directory=PYAS_PUMP_DIR schemas=JZTA_HIS parallel=4 dumpfile=pyas_his_20200318_p4_%U.dmp logfile=expdp_pyas_his_20200318_p4.log cluster=n compression=all exclude=statisitcs &amp;</p>
+<p>tail -f nohup.out</p>
+<p>1.11 源端统计记录行数（可选）</p>
+<hr>
+<p>define U=”‘JZTA_HIS’”</p>
+<p>spool cnt_s.sql</p>
+<p>set echo off   </p>
+<p>set heading off </p>
+<p>set pagesize 0  </p>
+<p>set linesize 200</p>
+<p>set verify off</p>
+<p>set feedback off</p>
+<p>select ‘set echo off   ‘ from dual;</p>
+<p>select ‘set feedback off ‘ from dual;</p>
+<p>select ‘set heading off ‘ from dual;</p>
+<p>select ‘set pagesize 0  ‘ from dual;</p>
+<p>select ‘set linesize 100 ‘ from dual;</p>
+<p>select ‘set verify off  ‘ from dual;</p>
+<p>select ‘spool cnt_s.log  ‘ from dual;</p>
+<p>select ‘alter session force parallel query parallel 8;  ‘ from dual;</p>
+<p>select ‘select rpad(‘’’||owner||’.’||table_name||’’’’||’,50,’’ ‘’)||’’|’’||trim(count(*))’||’ from ‘||owner||’.’||table_name||’;’ from dba_tables where owner IN (&amp;U) order by owner,table_name;</p>
+<p>select ‘exit;’ from dual;</p>
+<p>set heading on </p>
+<p>set pagesize 10000  </p>
+<p>set linesize 200</p>
+<p>\2. 目标端PDB操作</p>
+<p>===================================================================================================================================================</p>
+<p>注：目标端环境搭建及PDB创建完成</p>
+<p>2.1 PDB创建相关表空间</p>
+<hr>
+<p>show pdbs</p>
+<p>alter session set container=XXX;</p>
+<p>create tablespace KTS_JZTA_HIS    datafile ‘+DATADG2’ size 200M autoextend on;</p>
+<p>alter tablespace KTS_JZTA_HIS add   datafile ‘+DATADG2’ size 200M autoextend on;</p>
+<p>KTS_JZTA_HIS   需要空间1946.284G</p>
+<p>重复80次</p>
+<p>查看表空间：</p>
+<p>set lines 222 pages 222</p>
+<p>COLUMN ts_name     format a20    heading “Tablespace”</p>
+<p>​    COLUMN unalloc_size  format 999,999  heading “Unalloc(MB)”</p>
+<p>​    COLUMN used_size    format 999,999,999  heading “Used(MB)”</p>
+<p>​    COLUMN free_size    format 999,999  heading “Free(MB)”</p>
+<p>​    COLUMN capacity    format 99,99   heading “Used_pct(%)”</p>
+<p>SELECT a.tablespace_name ts_name</p>
+<p>   ,a.unalloc_size</p>
+<p>   ,nvl(f.free_size, 0) free_size</p>
+<p>   ,a.used_size - nvl(f.free_size, 0) used_size</p>
+<p>   ,round((a.used_size - nvl(f.free_size, 0)) /</p>
+<p>​       (a.unalloc_size + a.used_size)</p>
+<p>​      ,2)*100 capacity</p>
+<p> FROM (SELECT tablespace_name</p>
+<p>​       ,round(SUM(bytes) / 1024 / 1024) free_size</p>
+<p>​       ,round(AVG(bytes)/1024/1024) avg_size</p>
+<p>​     FROM dba_free_space</p>
+<p>​     GROUP BY tablespace_name) f</p>
+<p>   ,(SELECT tablespace_name</p>
+<p>​       ,round(SUM(user_bytes) / 1024 / 1024) used_size</p>
+<p>​       ,round(SUM(decode(autoextensible</p>
+<p>​                ,’YES’</p>
+<p>​                ,decode(sign(maxbytes - user_bytes)</p>
+<p>​                   ,-1</p>
+<p>​                   ,0</p>
+<p>​                   ,maxbytes - user_bytes)</p>
+<p>​                ,0)) / 1024 / 1024) unalloc_size</p>
+<p>​     FROM dba_data_files</p>
+<p>​     WHERE status=’AVAILABLE’</p>
+<p>​     GROUP BY tablespace_name) a</p>
+<p>WHERE 1 = 1</p>
+<p>  AND a.tablespace_name = f.tablespace_name(+)</p>
+<p>ORDER BY capacity DESC;</p>
+<p>2.2 创建PFOFILE</p>
+<hr>
+<p>create profile others limit PASSWORD_GRACE_TIME UNLIMITED;</p>
+<p>alter profile others limit PASSWORD_LIFE_TIME unlimited;</p>
+<p>alter profile others limit PASSWORD_LOCK_TIME unlimited;</p>
+<p>alter profile others limit PASSWORD_GRACE_TIME unlimited;</p>
+<p>alter profile others limit FAILED_LOGIN_ATTEMPTS unlimited;</p>
+<p>set line 400 pagesize 50000</p>
+<p>col PROFILE for a20</p>
+<p>col RESOURCE_NAME for a30</p>
+<p>col LIMIT for a30</p>
+<p>select * from dba_profiles where resource_type=’PASSWORD’ order by profile,resource_name;</p>
+<p>2.3 确认用户不存在</p>
+<hr>
+<p>select username,account_status from dba_users where username=’JZTA_HIS’;</p>
+<p>2.4 创建directory</p>
+<hr>
+<p>set linesize 400 pagesize 100</p>
+<p>col OWNER for a5  </p>
+<p>col DIRECTORY_NAME for a22</p>
+<p>col DIRECTORY_PATH for a80</p>
+<p>select * from dba_directories;</p>
+<p>!df -h</p>
+<p>!mkdir /home/oracle/his_dir</p>
+<p>create directory pyas_his_dir as ‘/home/oracle/his_dir’;</p>
+<p>2.5 导入数据</p>
+<hr>
+<p>22、导入语句</p>
+<p>nohup impdp &quot;sys/oracle@pyasec1 as sysdba&quot; schemas=JZTA_HIS directory=pyas_his_dir dumpfile=pyas_his_20200318_p4_%U.dmp paralllel=4 logfile=impdp_pyas_his_20200318_p4.log &amp;</p>
+<p>2.6 对象比对</p>
+<hr>
+<p>define U=”‘&amp;USERNAME’”</p>
+<p>set verify off</p>
+<p>set feedback off</p>
+<p>set lines 222 pages 222</p>
+<p>COLUMN owner      FORMAT a22         HEADING ‘Owner’      ENTMAP off</p>
+<p>COLUMN tablespace_name FORMAT a25         HEADING ‘Tablespace Name’ ENTMAP off</p>
+<p>COLUMN segment_type   FORMAT a25         HEADING ‘Segment Type’   ENTMAP off</p>
+<p>COLUMN seg_count    FORMAT 999,999,999,999   HEADING ‘Segment Count’  ENTMAP off</p>
+<p>col OBJECT_TYPE for a22</p>
+<p>col INDEX_TYPE for a22</p>
+<p>col uniqueness for a15</p>
+<p>col status for a15</p>
+<p>break on report on owner</p>
+<p>set pagesize 10000 lines 222</p>
+<p>select owner,OBJECT_TYPE,status,count(*) from dba_objects where owner IN (&amp;U) and (owner,object_name) not in (select owner,object_name from dba_recyclebin where owner in (&amp;U))</p>
+<p>group by owner,OBJECT_TYPE,status order by owner,OBJECT_TYPE,status;</p>
+<p>col table_name    for a33</p>
+<p>col CONSTRAINT_NAME for a22</p>
+<p>col CONSTRAINT_TYPE for a2</p>
+<p>col INDEX_NAME    for a30</p>
+<p>select owner,CONSTRAINT_TYPE,STATUS,count(*) from dba_constraints where owner IN (&amp;U) and table_name not like ‘BIN$%’ group by owner,CONSTRAINT_TYPE,STATUS order by 1,2,3;</p>
+<p>select index_type,uniqueness,status,count(*) from dba_indexes where owner IN (&amp;U) group by index_type,uniqueness,status order by 1,2,3;</p>
+<p>2.7 重新编译失效对象（如有）</p>
+<hr>
+<p>SQL&gt; @?/rdbms/admin/utlrp</p>
+<p>2.8 收集统计信息</p>
+<hr>
+<p>set timing on</p>
+<p>exec dbms_stats.gather_schema_stats(‘JZTA_HIS’,degree=&gt;16,no_invalidate=&gt;false,method_opt=&gt; ‘for all columns size repeat’,cascade =&gt; true);</p>
+<p>2.9 Sequence比对</p>
+<hr>
+<p>col SEQUENCE_OWNER for a22</p>
+<p>col SEQUENCE_NAME for a33</p>
+<p>col MAX_VALUE for 99999999999999999999999999999999</p>
+<p>col LAST_NUMBER for 99999999999999999999999999999999</p>
+<p>select * from dba_sequences where SEQUENCE_OWNER IN (‘JZTA_HIS’) order by 1,2;</p>
+<p>2.10 检查同义词</p>
+<hr>
+<p>select owner,SYNONYM_NAME,TABLE_OWNER,TABLE_NAME,DB_LINK from dba_synonyms where TABLE_OWNER in (‘JZTA_HIS’) order by 1;</p>
+<p>2.11 启动定时任务</p>
+<hr>
+<p>select ‘exec dbms_ijob.broken(‘||job||’,false);’ from dba_jobs where log_user in (‘JZTA_HIS’);</p>
+<p>再次确认</p>
+<p>select job,what,broken from dba_jobs where log_user in (‘JZTA_HIS’);</p>
+<p>2.12 解锁用户</p>
+<hr>
+<p>alter user JZTA_HIS account unlock;</p>
+<p>2.13 应用测试</p>
+<hr>
+<p>\3. 源端数据清理</p>
+<p>===================================================================================================================================================</p>
+<p>3.1 删除用户JZTA_HIS</p>
+<hr>
+<p>drop user JZTA_HIS cascade;</p>
+<p>3.2 表空间清理</p>
+<hr>
+<p>- 检查表空间KTS_JZTA_HIS是否存在其他对象：</p>
+<p>col m for 999,999,999</p>
+<p>SELECT</p>
+<p>   owner</p>
+<p> ,  tablespace_name</p>
+<p> , segment_type</p>
+<p> ,  round(sum(bytes)/1024/1024) m</p>
+<p> , count(*)  seg_count</p>
+<p>FROM</p>
+<p>  dba_segments where tablespace_name IN (‘KTS_JZTA_HIS’) and segment_name not like ‘BIN$%’</p>
+<p>GROUP BY</p>
+<p>  owner</p>
+<p> , tablespace_name</p>
+<p> , segment_type</p>
+<p>ORDER BY</p>
+<p>  owner</p>
+<p> , tablespace_name</p>
+<p> , segment_type;</p>
+<p> set verify on</p>
+<p>set feedback on</p>
+<p>- 如果表空间KTS_JZTA_HIS为空，可以直接删除此表空间：</p>
+<p>drop tablespace KTS_JZTA_HIS including contents and datafiles;</p>
+<p>- 如果表空间KTS_JZTA_HIS为空，可以通过resize缩小数据文件</p>
+<p>alter database datafile xxx resize xxx;</p>
+<hr>
+<p>修改SQLnet文件（待确认）</p>
+<p>su - grid</p>
+<p>cd $ORACLE_HOME/network/admin</p>
+<p>vim sqlnet.ora</p>
+<p>NAMES.DIRECTORY_PATH= (TNSNAMES,EZCONNECT)</p>
+<p>SQLNET.ALLOWED_LOGON_VERSION = 8</p>
+<p>SQLNET.ALLOWED_LOGON_VERSION_SERVER=8</p>
+<p>SQLNET.ALLOWED_LOGON_VERSION_CLIENT=8</p>
+<p>lsnrctl stop</p>
+<p>lsnrctl start</p>
+<p>lsnrctl status</p>
+<p>#########################额外命令############################</p>
+<p>删除非空表空间和数据文件</p>
+<p>drop tablespace 表空间名 including contents and datafiles;</p>
+<p>删除用户</p>
+<p>drop user 用户名 cascade;</p>
+<p>###########################################################</p>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">SaoSao Nian</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://yoursite.com/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Oracle/%E8%BF%81%E7%A7%BB%E7%9B%B8%E5%85%B3/%E4%B8%AD%E4%BA%A6%E5%AE%89%E5%9B%BE12C%E8%BF%81%E7%A7%BB-2020%E5%B9%B44%E6%9C%889%E6%97%A5/">http://yoursite.com/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Oracle/%E8%BF%81%E7%A7%BB%E7%9B%B8%E5%85%B3/%E4%B8%AD%E4%BA%A6%E5%AE%89%E5%9B%BE12C%E8%BF%81%E7%A7%BB-2020%E5%B9%B44%E6%9C%889%E6%97%A5/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Oracle/%E8%BF%81%E7%A7%BB%E7%9B%B8%E5%85%B3/%E6%95%B0%E6%8D%AE%E6%B3%B5%E6%93%8D%E4%BD%9C%E6%A0%B7%E4%BE%8B-2020%E5%B9%B45%E6%9C%8826%E6%97%A5/"><img class="prev-cover" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">骚年-Markdown/Oracle/迁移相关/数据泵操作样例-2020年5月26日</div></div></a></div><div class="next-post pull-right"><a href="/2020/07/16/%E9%AA%9A%E5%B9%B4-Markdown/Oracle/%E8%BF%81%E7%A7%BB%E7%9B%B8%E5%85%B3/XTTS/XTTS/"><img class="next-cover" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">骚年-Markdown/Oracle/迁移相关/XTTS/XTTS</div></div></a></div></nav></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 By SaoSao Nian</div><div class="framework-info"><span>Driven </span><a href="https://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="font_plus" type="button" title="Increase Font Size"><i class="fas fa-plus"></i></button><button id="font_minus" type="button" title="Decrease Font Size"><i class="fas fa-minus"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">繁</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script></body></html>
